@@ -33,11 +33,12 @@ const Value = () => {
   };
 
   return (
+    <div>
     <section id="value" className="v-wrapper paddings wrapper">
       <div className="v-container innerWidth flexColStart">
         {/* Left Side */}
         <div className="v-left">
-          <h2 className="kc">Knowledge Centre</h2>
+          <h2 className="kc left">Knowledge Centre</h2>
         </div>
 
         {/* Right Side */}
@@ -65,14 +66,14 @@ const Value = () => {
             ))}
           </Slider>
         </div>
-
-        <p className="underline">
-          <a className="right" href="/knowledge">
-            Visit our Knowledge Centre
-          </a>
-        </p>
       </div>
     </section>
+    
+    <p className="innerWidth right underline">
+    <a className="left" href="/knowledge">
+      Visit our Knowledge Centre
+    </a>
+  </p></div>
   );
 };
 
