@@ -1,0 +1,119 @@
+
+/* General Layout */
+.v-wrapper {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.v-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 2rem;
+}
+
+.v-left,
+.v-right {
+  flex: 1;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Knowledge Centre Title */
+.kc {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Swiper Styles */
+.v-right {
+  position: relative;
+}
+
+.v-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.v-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 200px; /* Constrain height */
+  overflow-y: auto; /* Enable scrolling for overflow */
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.v-section h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.v-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.v-section li {
+  margin: 0.5rem 0;
+}
+
+.v-section a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+/* Slick Carousel Customization */
+.slick-prev,
+.slick-next {
+  z-index: 2;
+  font-size: 2rem;
+}
+
+.slick-prev {
+  left: -40px;
+}
+
+.slick-next {
+  right: -40px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .v-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .v-left,
+  .v-right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .slick-prev,
+  .slick-next {
+    top: 10%;
+    transform: translateY(-10%);
+    font-size: 1.5rem;
+  }
+
+  .slick-prev {
+    left: 10px;
+  }
+
+  .slick-next {
+    right: 10px;
+  }
+
+  .v-section {
+    max-height: 150px; /* Adjust for smaller screens */
+  }
+}

@@ -1,0 +1,54 @@
+.plansPage {
+  text-align: center;
+}
+
+.plans-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.plan-card {
+  background: white;
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+.plan-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.plan-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: var(--primary);
+}
+
+.plan-description {
+  font-size: 1rem;
+  color: var(--secondary);
+  margin-bottom: 1rem;
+}
+
+.plan-info p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.dppbutton {
+  display: inline-block;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.dppbutton:hover{
+  background: var(--blue-gradient);
+}

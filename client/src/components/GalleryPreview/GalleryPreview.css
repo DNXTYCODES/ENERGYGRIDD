@@ -1,0 +1,37 @@
+.gallery-preview {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.gallery-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible grid */
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.gallery-item {
+  background: var(--lightBlue);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.button {
+  margin-top: 2rem;
+}

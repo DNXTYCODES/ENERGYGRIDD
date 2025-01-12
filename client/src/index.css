@@ -1,0 +1,271 @@
+:root {
+  --primary: #1f3e72;
+  --secondary: gray; /* Light gray for text contrast */
+  --black: #131110;
+  --blue-gradient: linear-gradient(97.05deg, #4066ff 3.76%, #2949c6 100%);
+  --orange-gradient: linear-gradient(270deg, #ffb978 0%, #ff922d 100%);
+  --blue: #4066ff;
+  --lightBlue: #e0ebff;
+  /* --shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25); */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--lightBlue);
+  color: var(--black);
+  line-height: 1.6;
+}
+
+.white-wrapper {
+  background-color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.paddings {
+  padding: 1.5rem;
+}
+
+.innerWidth {
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flexStart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flexEnd {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flexColCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexColStart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.primaryText {
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.secondaryText {
+  color: var(--secondary);
+  font-size: 0.9rem;
+}
+
+.orangeText {
+  color: #ff922d;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Buttons */
+.button {
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  color: white;
+  background: var(--orange-gradient);
+  border: none;
+  border-radius: 8px;
+  transition: all 300ms ease-in;
+}
+
+.button:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(255, 146, 45, 0.4);
+}
+
+.button a {
+  color: white; /* Ensure text inside buttons is always visible */
+  text-decoration: none;
+}
+
+.button.secondary {
+  background: var(--blue-gradient);
+}
+
+.button.secondary:hover {
+  box-shadow: 0px 6px 12px rgba(64, 102, 255, 0.4);
+}
+
+/* Media Queries */
+@media (min-width: 1536px) {
+  .innerWidth {
+    max-width: 1280px;
+    margin: auto;
+  }
+}
+
+@media (min-width: 640px) {
+  .paddings {
+    padding: 4rem;
+  }
+}
+
+@media (min-width: 1280px), (min-width: 768px) {
+  .paddings {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .primaryText {
+    font-size: 1.5rem;
+  }
+
+  .orangeText {
+    font-size: 1.2rem;
+  }
+
+  .button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* General Improvements */
+html {
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+p {
+  color: var(--black);
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.underline {
+  text-decoration: underline;
+  text-underline-offset: 7px;
+}
+
+.white {
+  color: white;
+}
+
+.black {
+  color: black;
+}
+
+.section-header {
+  font-size: large;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.space-up {
+  padding-top: 10px;
+}
+
+.space-up-up {
+  padding-top: 20px;
+}
+.space-up-up-up {
+  padding-top: 30px;
+}
+
+.left {
+  display: flex;
+  justify-content: left;
+}
+
+.right {
+  display: flex;
+  justify-content: right;
+}
+
+
+
+
+/* scss to css */
+
+/* Testimonial Section */
+.testimonial .card {
+  padding: 20px;
+}
+
+.testimonial .cards {
+  margin-top: 60px;
+}
+
+.testimonial .cards p {
+  margin-bottom: 22px;
+  font-size: 17px;
+  line-height: 30px;
+}
+
+.testimonial .cards .image {
+  display: flex; /* Equivalent of @include flex(center, none, none) */
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.testimonial .cards .image .img {
+  width: 100px;
+  height: 100px;
+}
+
+.testimonial .cards .image .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.testimonial .cards .image .img-text {
+  margin-left: 22px;
+}
+
+.testimonial .cards .image .img-text h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.testimonial .cards .image .img-text span {
+  color: rgba(0, 128, 0, 0.5); /* Equivalent to rgba(green, 0.5) */
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 3px;
+}
