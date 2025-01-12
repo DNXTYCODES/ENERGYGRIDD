@@ -10,6 +10,8 @@ import Value from "../components/Value/Value";
 import HeroReview from '../components/HeroReview/HeroReview';
 import GalleryPreview from '../components/GalleryPreview/GalleryPreview';
 import PlansPreview from '../components/PlansPreview/PlansPreview';
+import PeopleGrid from '../components/PeopleGrid/PeopleGrid';
+import KnowledgeSection from '../components/KnowledgeSection/KnowldedgeSection';
 
 
 const Website = () => {
@@ -21,10 +23,12 @@ const Website = () => {
     </div>
     {/* <Companies /> */}
     {/* <Residencies/> */}
-    <PlansPreview/>
+    {/* <PlansPreview/> */}
+    <KnowledgeSection />
     {/* <HeroReview/> */}
     <Value/>
-    <GalleryPreview/>
+    {/* <GalleryPreview/> */}
+    <PeopleGrid />
     {/* <Contact/> */}
     {/* <GetStarted/> */}
   </div>
