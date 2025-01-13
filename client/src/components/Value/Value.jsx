@@ -4,80 +4,194 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Value.css";
 import mockData from "../../utils/publications.js";
+import { useNavigate } from "react-router-dom";
 
 const Value = () => {
-  // Group blogs by category
-  const groupedData = mockData.reduce((acc, item) => {
-    if (!acc[item.category]) {
-      acc[item.category] = [];
-    }
-    acc[item.category].push(item);
-    return acc;
-  }, {});
+    const navigate = useNavigate();
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-        },
-      },
-    ],
-  };
+    // Group blogs by category
+    const groupedData = mockData.reduce((acc, item) => {
+        if (!acc[item.category]) {
+            acc[item.category] = [];
+        }
+        acc[item.category].push(item);
+        return acc;
+    }, {});
 
-  return (
-    <div>
-    <section id="value" className="v-wrapper paddings wrapper">
-      <div className="v-container innerWidth flexColStart">
-        {/* Left Side */}
-        <div className="v-left">
-          <h2 className="kc left">Knowledge Centre</h2>
-        </div>
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                },
+            },
+        ],
+    };
 
-        {/* Right Side */}
-        <div className="v-right">
-          <Slider {...sliderSettings}>
-            {Object.keys(groupedData).map((category, index) => (
-              <div key={index} className="v-page">
-                {/* Section Title */}
-                <h3 className="section-title">{category}</h3>
-                {/* Blogs */}
-                <div className="v-section">
-                  <ul>
-                    {groupedData[category].map((blog) => (
-                      <li className="pb-list" key={blog.id}>
-                        <a href="#">
-                          {blog.title}
-                          {/* <p className="blog-meta">Updated: {blog.updatedAt}</p> */}
-                          {/* <p className="blog-description">{blog.description}</p> */}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+    return (
+        <div>
+            <section id="value" className="v-wrapper paddings wrapper">
+                <div className="v-container innerWidth flexColStart">
+                    {/* Left Side */}
+                    <div className="v-left">
+                        <h2 className="kc left tex">Knowledge Centre</h2>
+                    </div>
+
+                    {/* Right Side */}
+                    <div className="v-right montserrat">
+                        <Slider {...sliderSettings}>
+                            {Object.keys(groupedData).map((category, index) => (
+                                <div key={index} className="v-page">
+                                    {/* Section Title */}
+                                    <h3 className="section-title montserrat">{category}</h3>
+                                    {/* Blogs */}
+                                    <div className="v-section">
+                                        <ul>
+                                            {groupedData[category].map((blog) => (
+                                                <li
+                                                    className="pb-list montserrat"
+                                                    key={blog.id}
+                                                    onClick={() => navigate(`/properties/${blog.id}`)}
+                                                >
+                                                    <span className="montserrat clickable">
+                                                        {blog.title}
+                                                    </span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            ))}
+                        </Slider>
+                    </div>
                 </div>
-              </div>
-            ))}
-          </Slider>
+            </section>
+
+            <p className="innerWidth right underline">
+                <a className="left montserrat" href="/knowledge">
+                    Visit our Knowledge Centre
+                </a>
+            </p>
         </div>
-      </div>
-    </section>
-    
-    <p className="innerWidth right underline">
-    <a className="left" href="/knowledge">
-      Visit our Knowledge Centre
-    </a>
-  </p></div>
-  );
+    );
 };
 
 export default Value;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from "react";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+// import "./Value.css";
+// import mockData from "../../utils/publications.js";
+// import { useNavigate } from "react-router-dom";
+
+// const Value = () => {
+//     const navigate = useNavigate();
+
+//   // Group blogs by category
+//   const groupedData = mockData.reduce((acc, item) => {
+//     if (!acc[item.category]) {
+//       acc[item.category] = [];
+//     }
+//     acc[item.category].push(item);
+//     return acc;
+//   }, {});
+
+//   const sliderSettings = {
+//     dots: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     arrows: true,
+//     responsive: [
+//       {
+//         breakpoint: 768,
+//         settings: {
+//           arrows: false,
+//         },
+//       },
+//     ],
+//   };
+
+//   return (
+//     <div>
+//     <section id="value" className="v-wrapper paddings wrapper">
+//       <div className="v-container innerWidth flexColStart">
+//         {/* Left Side */}
+//         <div className="v-left">
+//           <h2 className="kc left tex">Knowledge Centre</h2>
+//         </div>
+
+//         {/* Right Side */}
+//         <div className="v-right montserrat">
+//           <Slider {...sliderSettings}>
+//             {Object.keys(groupedData).map((category, index) => (
+//               <div key={index} className="v-page">
+//                 {/* Section Title */}
+//                 <h3 className="section-title montserrat">{category}</h3>
+//                 {/* Blogs */}
+//                 <div className="v-section">
+//                   <ul>
+//                     {groupedData[category].map((blog) => (
+//                       <li className="pb-list montserrat" key={blog.id}>
+//                         <a className="montserrat" href="#">
+//                           {blog.title}
+//                           {/* <p className="blog-meta">Updated: {blog.updatedAt}</p> */}
+//                           {/* <p className="blog-description">{blog.description}</p> */}
+//                         </a>
+//                       </li>
+//                     ))}
+//                   </ul>
+//                 </div>
+//               </div>
+//             ))}
+//           </Slider>
+//         </div>
+//       </div>
+//     </section>
+    
+//     <p className="innerWidth right underline">
+//     <a className="left montserrat" href="/knowledge">
+//       Visit our Knowledge Centre
+//     </a>
+//   </p></div>
+//   );
+// };
+
+// export default Value;
 
 
 

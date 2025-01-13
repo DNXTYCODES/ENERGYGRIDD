@@ -21,6 +21,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import ExpertisePage from "./pages/ExpertisePage/ExpertisePage";
 import People from "./pages/People/People";
 import Careers from "./pages/Careers/Careers";
+import PersonDetail from "./components/PersonDetail/PersonDetail";
 
 function App() {
   const queryClient = new QueryClient();
@@ -77,6 +78,8 @@ function App() {
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/plans" element={<PlansPage />} />
                 <Route path="/people" element={<People />} />
+                <Route path="/people/:name" element={<PersonDetail />} />
+
                 <Route path="/careers" element={<Careers />} />
                 {/* Protected Admin Route */}
                 {isAdmin && (

@@ -27,7 +27,7 @@ const Hero = () => {
           </div>
           <div className="flexColStart secondaryText flexhero-des">
             <span>
-              <span className="underline white">
+              <span className="underline white montserrat">
                 Read More
               </span>
               <br />

@@ -1,0 +1,12 @@
+Pages title;
+
+1. About Us
+2. Focus
+3. People
+4. Knowledge 
+5. Contact
+
+
+All title font( header) is Tex Grye Termes 
+
+Body font & sub-title font is montserrat Classic

@@ -24,7 +24,7 @@ const Header = () => {
       <div className="flexCenter innerWidth paddings h-container">
         {/* Logo */}
         <Link to="/">
-          <img src="./logo.png" alt="logo" width={100} />
+          <img src="./EnergyGrid  black .png" alt="logo" width={100} />
         </Link>
 
         {/* Menu */}
@@ -34,9 +34,9 @@ const Header = () => {
           }}
         >
           <div className="flexCenter h-menu" style={getMenuStyles(menuOpened)}>
-            <NavLink to="/properties">Products</NavLink>
-            <span>Services</span>
-            <a href="mailto:ayomatthew891@gmail.com">Contact</a>
+            <NavLink to="/properties">Publications</NavLink>
+            {/* <span>Services</span> */}
+            {/* <a href="mailto:ayomatthew891@gmail.com">Contact</a> */}
             <NavLink to="/people">People</NavLink>
 
               <NavLink to="/expertise" className="admin-link">

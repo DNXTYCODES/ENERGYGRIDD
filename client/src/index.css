@@ -269,3 +269,32 @@ p {
   font-size: 14px;
   letter-spacing: 3px;
 }
+
+.eg-title {
+  font-family: tex gyre;
+}
+
+
+.montserrat {
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TeX Gyre Termas';
+  src: url('/fonts/tex-gyre-termas/texgyretermas-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TeX Gyre Termas';
+  src: url('./assets/fonts/tex-gyre-termas/texgyretermas-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+.tex {
+  font-family: 'TeX Gyre Termas', sans-serif;
+}

@@ -36,7 +36,7 @@ const Properties = () => {
             <h1>Publications</h1>
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search by Title/Category"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             />
