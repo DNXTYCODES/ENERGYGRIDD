@@ -22,6 +22,7 @@ import ExpertisePage from "./pages/ExpertisePage/ExpertisePage";
 import People from "./pages/People/People";
 import Careers from "./pages/Careers/Careers";
 import PersonDetail from "./components/PersonDetail/PersonDetail";
+import Publications from "./pages/Publications/Publications";
 
 function App() {
   const queryClient = new QueryClient();
@@ -56,14 +57,20 @@ function App() {
                 <Route path="/" element={<Website />} />
 
 
-                <Route path="/properties">
+                {/* <Route path="/properties">
                   <Route index element={<Properties />} />
+                  <Route path=":id" element={<Property />} />
+                </Route> */}
+
+                
+                <Route path="/publications">
+                  <Route index element={<Publications />} />
                   <Route path=":id" element={<Property />} />
                 </Route>
 
 
-                {/* <Route path="/properties" element={<Properties />} /> 
-                <Route path="/properties/:id" element={<Property />} />  */}
+                <Route path="/properties" element={<Properties />} /> 
+                <Route path="/properties/:id" element={<Property />} /> 
 
 
                 <Route path="/expertise">

@@ -1,0 +1,184 @@
+/* General Styling */
+.publications-wrapper {
+  font-family: Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.publications-container, .container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.hero-section {
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 20px;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.hero-section input {
+  margin-top: 15px;
+  padding: 10px;
+  width: 300px;
+  max-width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Publications Section */
+.publications-section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.publications-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%; /* Each column takes half the width */
+}
+
+.publication-card {
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-bottom: solid black 1px;
+
+}
+
+.publication-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+}
+
+.publication-card h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.publication-card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.publication-card span {
+  font-size: 0.8rem;
+  color: black;
+  font-weight: bold;
+}
+
+/* Pagination Section */
+.pagination-section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination-section button {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.pagination-section button.active {
+  background-color: #4066ff;
+  color: white;
+}
+
+.pagination-section button:hover {
+  background-color: #d6d6d6;
+}
+
+.hero-section {
+  background-image: url("/Company-Updates-Textured-Mark.jpg"); /* Replace with your image URL */
+  background-size: cover; /* Ensures the image covers the entire section */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  text-align: center;
+  padding: 60px 20px; /* Add padding for spacing */
+  color: white; /* Ensures text is readable */
+  position: relative; /* Enables the use of overlays */
+}
+
+/* Optional: Add an overlay to darken the image for better text visibility */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  z-index: 1; /* Ensures the overlay is below the text */
+}
+
+.hero-section h1,
+.hero-section input {
+  position: relative; /* Ensures text and input appear above the overlay */
+  z-index: 2;
+}
+
+.hero-section h1 {
+  font-size: 3rem; /* Adjust size as needed */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-section input {
+  margin-top: 15px;
+  padding: 10px;
+  width: 300px;
+  max-width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .publications-section {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .publications-column {
+    width: 100%; /* Columns stack vertically */
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+}
+
+.cat-time {
+  display: flex;
+  flex: row;
+}
+
+.seperator {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}

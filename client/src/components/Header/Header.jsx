@@ -34,7 +34,7 @@ const Header = () => {
           }}
         >
           <div className="flexCenter h-menu" style={getMenuStyles(menuOpened)}>
-            <NavLink to="/properties">Publications</NavLink>
+            <NavLink to="/publications">Publications</NavLink>
             {/* <span>Services</span> */}
             {/* <a href="mailto:ayomatthew891@gmail.com">Contact</a> */}
             <NavLink to="/people">People</NavLink>
