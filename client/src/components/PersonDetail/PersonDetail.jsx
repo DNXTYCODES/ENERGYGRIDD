@@ -30,19 +30,19 @@ const PersonDetail = () => {
   );
 
   return (
-    <div className="person-detail-container bg-white">
+    <div className="person-detail-container bg-white innerWidth paddings">
       {/* Blue Section */}
-      <div className="blue-section">
+      <div className="bluee-section bg-white">
         <img src={picture} alt={name} className="person-image" />
-        <h1 className="person-name">{name}</h1>
-        <p className="person-role">{role}</p>
+        <p className="person-name tex space-up">{name}</p>
+        <p className="person-role montserrat">{role}</p>
         <div className="contact-icons">
           {/* Add contact and LinkedIn icons */}
         </div>
       </div>
 
       {/* Yellow Section */}
-      <div className="yellow-section">
+      <div className="yellow-section space-up-up-up">
         {/* Tabs Header */}
         <div className="tabs">
           <ul>
@@ -51,7 +51,8 @@ const PersonDetail = () => {
                 className={activeTab === "about" ? "active-tab" : ""}
                 onClick={() => setActiveTab("about")}
               >
-                About
+                <div className="montserrat active-style">
+                About</div>
               </li>
             )}
             {hasExperience && (
@@ -59,7 +60,8 @@ const PersonDetail = () => {
                 className={activeTab === "experience" ? "active-tab" : ""}
                 onClick={() => setActiveTab("experience")}
               >
-                Experience
+              <div className="montserrat active-style">
+              Experience</div>
               </li>
             )}
             {hasPublications && (
@@ -67,7 +69,8 @@ const PersonDetail = () => {
                 className={activeTab === "publications" ? "active-tab" : ""}
                 onClick={() => setActiveTab("publications")}
               >
-                Publications
+              <div className="montserrat active-style">
+              Publications</div>
               </li>
             )}
           </ul>
@@ -77,16 +80,16 @@ const PersonDetail = () => {
         <div className="content">
           {activeTab === "about" && hasAbout && (
             <div className="about-section">
-              <h2>About</h2>
-              <p>{about.bio}</p>
-              <h3>Testimonials</h3>
+              {/* <h2>About</h2> */}
+              <p className="montserrat write-up">{about.bio}</p>
+              <p className="bluee-section-title">Testimonials</p>
               <ul>
                 {about.testimonials?.map((testimonial, index) => (
                   <li key={index}>{testimonial}</li>
                 ))}
               </ul>
-              <h3>Awards</h3>
-              <ul>
+              <p className="bluee-section-title">Awards</p>
+              <ul className="write-up">
                 {about.awards?.map((award, index) => (
                   <li key={index}>{award}</li>
                 ))}
@@ -95,7 +98,7 @@ const PersonDetail = () => {
           )}
           {activeTab === "experience" && hasExperience && (
             <div className="experience-section">
-              <h2>Experience</h2>
+              <p className="bluee-section-title">Experience</p>
               <ul>
                 {experience.map((exp, index) => (
                   <li key={index}>{exp}</li>

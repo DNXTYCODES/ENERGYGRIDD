@@ -6,6 +6,8 @@
   --orange-gradient: linear-gradient(270deg, #ffb978 0%, #ff922d 100%);
   --blue: #4066ff;
   --lightBlue: #e0ebff;
+  --title-font: 'TeX Gyre Termas', sans-serif;
+  --sub-font: "Montserrat", serif;
   /* --shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25); */
 }
 
@@ -297,4 +299,9 @@ p {
 
 .tex {
   font-family: 'TeX Gyre Termas', sans-serif;
+}
+
+.write-up {
+  font-family: var(--sub-font);
+  font-size: 13px;
 }

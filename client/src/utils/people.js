@@ -19,7 +19,7 @@ const people = [
   {
     name: "Seth Asante",
     role: "Managing Partner",
-    picture: "Seyram-Dzikunu.png",
+    picture: "/Seyram-Dzikunu.png",
     expertise: {
       about: {
         bio: "Seth is the Managing Partner and Head of Financial Institutions...",

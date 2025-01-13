@@ -3,40 +3,51 @@
   flex-direction: column;
 }
 
-.blue-section {
-  text-align: center;
-  margin: 20px 0;
+.bluee-section {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: left;
+  /* margin: 20px 0; */
 }
 
 .person-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  width: 200px;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  /* border-radius: 50%; */
 }
 
 .person-name {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: medium;
 }
 
 .person-role {
-  font-size: 18px;
-  color: gray;
+  font-weight: bold;
+  font-size: medium;
 }
 
 .contact-icons {
   margin-top: 10px;
 }
 
-.yellow-section {
-  padding: 20px;
+.active-tab {
+  color: goldenrod;
+}
+
+.tabs {
+  text-decoration: none;
+}
+
+.active-style {
+  font-size: small;
 }
 
 .tabs ul {
   display: flex;
   list-style: none;
   padding: 0;
-  border-bottom: 1px solid #ccc;
 }
 
 .tabs ul li {
@@ -56,5 +67,16 @@ h2 {
 
 ul {
   list-style: disc;
-  margin-left: 20px;
+  /* margin-left: 20px; */
+}
+
+.person-detail-container ul, .person-detail-container li {
+  list-style: none;
+  font-family: var(--sub-font);
+}
+
+.bluee-section-title {
+  font-weight: bold;
+  font-size: small;
+  font-family: var(--title-font);
 }
