@@ -1,5 +1,4 @@
 import React from "react";
-import { expertise, services } from "../../utils/expertiseData";
 import "../ExpertisePage/ExpertisePage.css";
 import { Link } from "react-router-dom";
 
@@ -12,7 +11,7 @@ const Careers = () => {
         <h1>Our Expertise</h1>
       </section>
 
-      
+{/*       
       <section className="about">
         <div>
           <h4 className="practice space-up left section-header">Our Practice Areas</h4>
@@ -68,7 +67,7 @@ const Careers = () => {
             inumina patri, santi.... each staff's social handles(linkedin, instagram, facebook,email will be in the employees/people page)
           </div>
         </div>
-      </section>
+      </section> */}
 
       <form action=""></form>
 

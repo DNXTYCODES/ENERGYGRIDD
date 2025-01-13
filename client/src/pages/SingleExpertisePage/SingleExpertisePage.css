@@ -1,0 +1,217 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Hero Image Section */
+.hero-section {
+  position: relative;
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+/* About and Experience Section */
+.info-section {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.info-tabs {
+  display: flex;
+  justify-content: start;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #ddd;
+}
+
+.info-tabs a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 0.5rem 0;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.info-tabs a.active {
+  border-bottom: 3px solid #007bff;
+  color: #007bff;
+}
+
+.info-content {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Key Matters Section */
+.key-matters {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.key-matters h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.key-matters ul {
+  list-style: disc inside;
+  padding: 0;
+  margin: 0;
+}
+
+.key-matters li {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+/* Dropdown Sections */
+.dropdown {
+  margin-top: 2rem;
+}
+
+.dropdown-header {
+  cursor: pointer;
+  background-color: #f1f1f1;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-header:hover {
+  background-color: #e9e9e9;
+}
+
+.dropdown-header h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  padding: 0 1rem;
+}
+
+.dropdown-content.active {
+  max-height: 300px;
+  padding: 1rem;
+}
+
+.dropdown-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-content li {
+  margin-bottom: 0.5rem;
+}
+
+.dropdown-content a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  color: #0056b3;
+}
+
+/* Publications Section */
+.publications-section {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.publications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.publication-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.publication-item:hover {
+  transform: scale(1.03);
+}
+
+.publication-image img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.publication-content {
+  padding: 1rem;
+}
+
+.publication-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.publication-description {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.publication-link {
+  display: block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.publication-link:hover {
+  color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .info-tabs {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .publications-grid {
+    grid-template-columns: 1fr;
+  }
+}

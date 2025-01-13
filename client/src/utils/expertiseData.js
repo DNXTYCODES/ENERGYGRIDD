@@ -2,47 +2,110 @@ export const expertise = [
   {
     id: "corporate-commercial",
     title: "Corporate Commercial",
-    image: "/cc3-1024x640-1.png",
-    about: "We help businesses navigate the complexities of corporate law.",
-    experience: "10+ years of experience in corporate law and commercial transactions.",
+    image: "/images/corporate-commercial.jpg",
+    description:
+      "Our Corporate Commercial practice covers a wide range of commercial, regulatory, and legal activities. We ensure that we understand the business of our clients.",
+    keyMatters: [
+      "A global agricultural commodities merchant in Ghana.",
+      "A major retailer in Ghana.",
+      "A multinational telecommunications company.",
+      "An international petroleum company.",
+    ],
+    awards: [
+      "Band 1 Firm in Corporate / Commercial, Chambers Global 2024",
+      "Tier 1 Firm in Commercial, Corporate and M&A, Chambers Global 2024",
+    ],
+    services: ["Banking and Finance", "Intellectual Property", "Employment"],
   },
   {
     id: "financial-institutions",
     title: "Financial Institutions & Capital Markets",
-    image: "ficm-1024x640-1.png",
-    about: "Providing innovative solutions for financial institutions.",
-    experience: "8+ years of expertise in capital markets and financial regulation.",
+    image: "/images/financial-institutions.jpg",
+    description:
+      "Providing innovative solutions for financial institutions and capital markets.",
+    keyMatters: [
+      "Advised on a billion-dollar bond issuance.",
+      "Represented a leading bank in a high-profile litigation case.",
+    ],
+    awards: ["Band 2 Firm in Financial Markets, Chambers Global 2024"],
+    services: ["Data Protection", "Mergers & Acquisitions"],
   },
   {
-    id: "energy-infrastructure",
-    title: "Energy and Infrastructure",
-    image: "ei-1024x640-1.png",
-    about: "Supporting sustainable growth in energy and infrastructure.",
-    experience: "12+ years of expertise in energy law and infrastructure projects.",
+    id: "corporate-commerciald",
+    title: "Corporate Commercial",
+    image: "/images/corporate-commercial.jpg",
+    description:
+      "Our Corporate Commercial practice covers a wide range of commercial, regulatory, and legal activities. We ensure that we understand the business of our clients.",
+    keyMatters: [
+      "A global agricultural commodities merchant in Ghana.",
+      "A major retailer in Ghana.",
+      "A multinational telecommunications company.",
+      "An international petroleum company.",
+    ],
+    awards: [
+      "Band 1 Firm in Corporate / Commercial, Chambers Global 2024",
+      "Tier 1 Firm in Commercial, Corporate and M&A, Chambers Global 2024",
+    ],
+    services: ["Banking and Finance", "Intellectual Property", "Employment"],
   },
   {
-    id: "disputes",
-    title: "Disputes",
-    image: "Dispute-resolution-practices-progressing-across-the-continent-Publication-1024x640-1.png",
-    about: "Expert resolution for commercial and civil disputes.",
-    experience: "15+ years of experience in litigation and arbitration.",
+    id: "financial-institutionsd",
+    title: "Financial Institutions & Capital Markets",
+    image: "/images/financial-institutions.jpg",
+    description:
+      "Providing innovative solutions for financial institutions and capital markets.",
+    keyMatters: [
+      "Advised on a billion-dollar bond issuance.",
+      "Represented a leading bank in a high-profile litigation case.",
+    ],
+    awards: ["Band 2 Firm in Financial Markets, Chambers Global 2024"],
+    services: ["Data Protection", "Mergers & Acquisitions"],
   },
 ];
 
-export const services = [
-  "Consumer Electronics",
-  "Healthcare",
-  "Power",
-  "Mining",
-  "Mergers & Acquisitions",
-  "Data Protection",
-  "Intellectual Property",
-  "Banking and Finance",
-  "Projects, Construction and Real Estate",
-  "Oil & Gas",
-  "Financial Services Regulatory",
-  "Employment",
-];
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const expertise = [
+//   {
+//     id: "corporate-commercial",
+//     title: "Corporate Commercial",
+//     image: "/cc3-1024x640-1.png",
+//     about: "We help businesses navigate the complexities of corporate law.",
+//     experience: "10+ years of experience in corporate law and commercial transactions.",
+//   },
+//   {
+//     id: "financial-institutions",
+//     title: "Financial Institutions & Capital Markets",
+//     image: "ficm-1024x640-1.png",
+//     about: "Providing innovative solutions for financial institutions.",
+//     experience: "8+ years of expertise in capital markets and financial regulation.",
+//   },
+//   {
+//     id: "energy-infrastructure",
+//     title: "Energy and Infrastructure",
+//     image: "ei-1024x640-1.png",
+//     about: "Supporting sustainable growth in energy and infrastructure.",
+//     experience: "12+ years of expertise in energy law and infrastructure projects.",
+//   },
+//   {
+//     id: "disputes",
+//     title: "Disputes",
+//     image: "Dispute-resolution-practices-progressing-across-the-continent-Publication-1024x640-1.png",
+//     about: "Expert resolution for commercial and civil disputes.",
+//     experience: "15+ years of experience in litigation and arbitration.",
+//   },
+// ];
 
 
 

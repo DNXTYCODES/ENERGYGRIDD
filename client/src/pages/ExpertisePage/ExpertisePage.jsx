@@ -1,5 +1,6 @@
 import React from "react";
-import { expertise, services } from "../../utils/expertiseData";
+import { expertise } from "../../utils/expertiseData";
+import { services } from "../../utils/serviceData";
 import "./ExpertisePage.css";
 import { Link } from "react-router-dom";
 
@@ -18,11 +19,10 @@ const ExpertisePage = () => {
           <div className="practice-text space-up left">
             A leading group across various practice areas, we bring years of
             experience handling pivotal transactions and disputes across
-            industries. blah blah blah . matthewcodez, dnxtcodez, practica area text, 
-            talking about what this organisation dooes and services they offer, 
-            this is a site to show the full catalogue of all the services they offer and the professionals/associates/staff 
-            that are incharthe of each of these fields of work. once again, blah blah, lorem ipsum dolor,
-            inumina patri, santi.... each staff's social handles(linkedin, instagram, facebook,email will be in the employees/people page)
+            industries. This is a site to show the full catalog of all the
+            services we offer and the professionals/associates/staff that are
+            in charge of each of these fields of work. 
+            Each staff's social handles (LinkedIn, Instagram, Facebook, email) can be found on the employees/people page.
           </div>
         </div>
       </section>
@@ -39,10 +39,9 @@ const ExpertisePage = () => {
             <img src={item.image} alt={item.title} />
             <div className="expertise-content">
               <p className="expertise-title">{item.title}</p>
-              {/* <p>{item.about}</p> */}
-              {/* <Link to={`/expertise/${item.id}`} className="learn-more">
+              <Link to={`/expertise/${item.id}`} className="learn-more">
                 Learn More
-              </Link> */}
+              </Link>
             </div>
           </div>
         ))}
@@ -52,12 +51,13 @@ const ExpertisePage = () => {
       <section className="services">
         <p className="section-header space-up-up-up">Our Other Services</p>
         <div className="services-grid space-up-up">
-          {services.map((service, index) => (
-            <div key={index} className="service-item">
+          {services.map((service) => (
+            <div key={service.id} className="service-item">
               <Link
-                to={`/services/${service.toLowerCase().replace(/\s+/g, "-")}`}
+                to={`/services/${service.id}`}
+                className="service-link"
               >
-                {service}
+                {service.title}
               </Link>
               <div className="service-right-arrow">&gt;</div>
             </div>
@@ -69,6 +69,104 @@ const ExpertisePage = () => {
 };
 
 export default ExpertisePage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from "react";
+// import { expertise} from "../../utils/expertiseData";
+// import { services } from "../../utils/serviceData";
+// import "./ExpertisePage.css";
+// import { Link } from "react-router-dom";
+
+// const ExpertisePage = () => {
+//   return (
+//     <div className="expertise-page container innerWidth">
+//       {/* Hero Section */}
+//       <section className="expertise-hero">
+//         <h1>Our Expertise</h1>
+//       </section>
+
+//       {/* About Section */}
+//       <section className="about">
+//         <div>
+//           <h4 className="practice space-up left section-header">Our Practice Areas</h4>
+//           <div className="practice-text space-up left">
+//             A leading group across various practice areas, we bring years of
+//             experience handling pivotal transactions and disputes across
+//             industries. blah blah blah . matthewcodez, dnxtcodez, practica area text, 
+//             talking about what this organisation dooes and services they offer, 
+//             this is a site to show the full catalogue of all the services they offer and the professionals/associates/staff 
+//             that are incharthe of each of these fields of work. once again, blah blah, lorem ipsum dolor,
+//             inumina patri, santi.... each staff's social handles(linkedin, instagram, facebook,email will be in the employees/people page)
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Expertise Section */}
+//       <section className="expertise-grid">
+//         {expertise.map((item, index) => (
+//           <div
+//             key={item.id}
+//             className={`expertise-item innerWidth flexColCenter ${
+//               index % 2 === 0 ? "left" : "right"
+//             }`}
+//           >
+//             <img src={item.image} alt={item.title} />
+//             <div className="expertise-content">
+//               <p className="expertise-title">{item.title}</p>
+//               {/* <p>{item.about}</p> */}
+//               {/* <Link to={`/expertise/${item.id}`} className="learn-more">
+//                 Learn More
+//               </Link> */}
+//             </div>
+//           </div>
+//         ))}
+//       </section>
+
+//       {/* Services Section */}
+//       <section className="services">
+//         <p className="section-header space-up-up-up">Our Other Services</p>
+//         <div className="services-grid space-up-up">
+//           {services.map((service, index) => (
+//             <div key={index} className="service-item">
+//               <Link
+//                 to={`/services/${service.toLowerCase().replace(/\s+/g, "-")}`}
+//               >
+//                 {service}
+//               </Link>
+//               <div className="service-right-arrow">&gt;</div>
+//             </div>
+//           ))}
+//         </div>
+//       </section>
+//     </div>
+//   );
+// };
+
+// export default ExpertisePage;
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import React from "react";
 // import styles from "./ExpertisePage.module.css";
