@@ -16,6 +16,7 @@ export const expertise = [
       "Tier 1 Firm in Commercial, Corporate and M&A, Chambers Global 2024",
     ],
     services: ["Banking and Finance", "Intellectual Property", "Employment"],
+    experience: ["solved issue 1", "solved issue 2", "solved issue 3ddd"]
   },
   {
     id: "financial-institutions",

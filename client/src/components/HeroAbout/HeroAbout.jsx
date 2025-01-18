@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 const HeroAbout = () => {
   return (
     <section className="wrapper innerWidth flexColStart paddings">
-      <h2>
+      <h2 className="tex">
         About Us
       </h2>
-      <div>
+      <div className="write-up" style={{maxWidth: "85%", textAlign: "justify"}}>
         <p>Bentsi-Enchill, Letsa & Ankomah is a leading full-service law firm in Ghana with in-depth expertise and experience in providing first-rate legal services for international and local clients in all sectors of the economy.</p>
         <p>We are well-recognised for our leadership and stand out for providing commercially relevant legal services and innovative solutions to our clients. </p>
         <p>What drives us is our long-term commitment to providing legal services with the highest level of professionalism and quality, as well as building our teams to help our clients succeed and take advantage of the right opportunities.</p>
       </div>
-      <a href="/about">view our About-Us Page</a>
+      <a href="/about" className="underline right space-up write-up">view our About-Us Page</a>
     </section>
 
   )

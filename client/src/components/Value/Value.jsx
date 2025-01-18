@@ -56,11 +56,11 @@ const Value = () => {
                                         <ul>
                                             {groupedData[category].map((blog) => (
                                                 <li
-                                                    className="pb-list montserrat"
+                                                    className="pb-list tex"
                                                     key={blog.id}
                                                     onClick={() => navigate(`/properties/${blog.id}`)}
                                                 >
-                                                    <span className="montserrat clickable">
+                                                    <span className="write-up clickable">
                                                         {blog.title}
                                                     </span>
                                                 </li>
@@ -74,8 +74,8 @@ const Value = () => {
                 </div>
             </section>
 
-            <p className="innerWidth right underline">
-                <a className="left montserrat" href="/knowledge">
+            <p className="innerWidth right underline paddings">
+                <a className="write-up" href="/publications">
                     Visit our Knowledge Centre
                 </a>
             </p>

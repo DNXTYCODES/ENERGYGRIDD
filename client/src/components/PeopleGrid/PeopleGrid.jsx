@@ -9,7 +9,7 @@ const PeopleGrid = () => {
     return (
         <div className="people-grid-container">
             {/* Title Section */}
-            <h2 className="grid-title">Meet Our Team</h2>
+            <h2 className="grid-title tex">Meet Our Team</h2>
 
             {/* People Grid */}
             <div className="people-grid">
@@ -25,11 +25,14 @@ const PeopleGrid = () => {
                             src={person.picture}
                             alt={person.name}
                         />
-                        <p className="people-name">{person.name}</p>
-                        <p className="people-role">{person.role}</p>
+                        <p className="people-name tex">{person.name}</p>
+                        <p className="people-role write-up">{person.role}</p>
                     </div>
                 ))}
             </div>
+            <p className="innerWidth paddings tex write-up">
+                <a href="/people" className="right underline">Visit our People Page</a>
+            </p>
         </div>
     );
 };

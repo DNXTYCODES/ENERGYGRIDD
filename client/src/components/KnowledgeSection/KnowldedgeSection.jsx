@@ -33,8 +33,8 @@ const KnowledgeSection = () => {
     <section className="plans-preview paddings wrapper">
       <div className="innerWidth flexColStart">
         
-        <h2>Our Practice Areas</h2>
-        <div className="plans-grid space-up">
+        <h2 className="tex">Our Practice Areas</h2>
+        <div className="plans-grid space-up write-up">
                 {expertise.map((item, index) => (
                   <Link to={`/expertise/${item.id}`}
                     key={item.id}
@@ -43,8 +43,8 @@ const KnowledgeSection = () => {
                     }`}
                   >
                     <img src={item.image} alt={item.title} />
-                    <div className="expertise-content">
-                      <p className="expertise-title">{item.title}</p>
+                    <div className="expertise-content write-up">
+                      <p className="expertise-title write-up">{item.title}</p>
                       {/* <p>{item.about}</p> */}
                       {/* <Link to={`/expertise/${item.id}`} className="learn-more">
                         Learn More
@@ -53,7 +53,7 @@ const KnowledgeSection = () => {
                   </Link>
                 ))}
         </div>
-          <p className="right underline">
+          <p className="right underline write-up">
             <a href="/expertise">Visit our Experise Page</a>
           </p>
       </div>
