@@ -38,6 +38,7 @@ const Header = () => {
             {/* <span>Services</span> */}
             {/* <a href="mailto:ayomatthew891@gmail.com">Contact</a> */}
             <NavLink to="/people">People</NavLink>
+            <NavLink to="/about">About</NavLink>
 
               <NavLink to="/expertise" className="admin-link">
                 expertise

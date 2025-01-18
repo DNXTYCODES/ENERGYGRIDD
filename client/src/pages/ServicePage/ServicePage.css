@@ -1,4 +1,100 @@
-/* CSS for SingleExpertisePage */
+.sp-expertise-service-page {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.sp-expertise-hero {
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.sp-expertise-hero h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.sp-expertise-body {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+.sp-expertise-content {
+  flex: 1;
+  min-width: 60%;
+}
+
+.sp-expertise-content h3 {
+  margin-top: 20px;
+  color: #0074d9;
+}
+
+.sp-expertise-content ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.sp-expertise-author {
+  flex: 1;
+  min-width: 35%;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sp-expertise-author h3 {
+  margin-bottom: 20px;
+}
+
+.sp-contact {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sp-contact-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.sp-contact p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .sp-expertise-body {
+    flex-direction: column;
+  }
+
+  .sp-expertise-content,
+  .sp-expertise-author {
+    min-width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* CSS for SingleExpertisePage
 .hero {
   display: flex;
   align-items: center;
@@ -99,7 +195,6 @@ ul {
   font-size: 0.9rem;
 }
 
-/* CSS for ServicePage */
 .service-hero {
   display: flex;
   align-items: center;
@@ -131,4 +226,4 @@ ul {
   list-style: disc;
   padding-left: 1.5rem;
   color: #555;
-}
+} */

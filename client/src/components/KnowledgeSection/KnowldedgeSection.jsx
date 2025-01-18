@@ -2,6 +2,7 @@ import React from "react";
 // import "./index.css";
 import "./KnowledgeSection.css";
 import { expertise } from "../../utils/expertiseData";
+import { Link } from "react-router-dom";
 
 const KnowledgeSection = () => {
   const plans = [
@@ -35,7 +36,7 @@ const KnowledgeSection = () => {
         <h2>Our Practice Areas</h2>
         <div className="plans-grid space-up">
                 {expertise.map((item, index) => (
-                  <div
+                  <Link to={`/expertise/${item.id}`}
                     key={item.id}
                     className={`expertise-item innerWidth flexColCenter ${
                       index % 2 === 0 ? "left" : "right"
@@ -49,7 +50,7 @@ const KnowledgeSection = () => {
                         Learn More
                       </Link> */}
                     </div>
-                  </div>
+                  </Link>
                 ))}
         </div>
           <p className="right underline">

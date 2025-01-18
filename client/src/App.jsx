@@ -27,6 +27,8 @@ import Publications from "./pages/Publications/Publications";
 // import ServiceDetail from "./pages/ServiceDetail/ServiceDetail"; // New component for detailed service
 import SingleExpertisePage from "./pages/SingleExpertisePage/SingleExpertisePage";
 import ServicePage from "./pages/ServicePage/ServicePage";
+import { services } from "./utils/serviceData";
+import About from "./pages/About/About";
 
 function App() {
   const queryClient = new QueryClient();
@@ -67,17 +69,31 @@ function App() {
                 </Route>
 
                 {/* Expertise Routes */}
-                <Route path="/expertise">
+                {/* <Route path="/expertise">
                   <Route index element={<ExpertisePage />} />
                   <Route path=":id" element={<SingleExpertisePage />} />
-                </Route>
+                </Route> */}
 
                 {/* Services Routes */}
-                <Route path="/services">
-                  <Route path=":id" element={<ServicePage />} />
-                </Route>
+                {/* <Route path="/services">
+                  <Route path=":servicesId" element={<ServicePage />} />
+                </Route> */}
+
+                <Route path="/services/:serviceId" element={<ServicePage />} />
+
+                {/* <Route path="/services">
+                  {services.map((service) => (
+                    <Route
+                      key={service.id}
+                      path={service.id}
+                      element={<ServicePage />}
+                    />
+                  ))}
+                </Route> */}
 
                 {/* Other Routes */}
+
+                <Route path="/about" element={<About />} />
                 <Route path="/bookings" element={<Bookings />} />
                 <Route path="/favourites" element={<Favourites />} />
                 <Route path="/estimate" element={<Estimate />} />
@@ -87,6 +103,11 @@ function App() {
                 <Route path="/people" element={<People />} />
                 <Route path="/people/:name" element={<PersonDetail />} />
                 <Route path="/careers" element={<Careers />} />
+                <Route path="/expertise" element={<ExpertisePage />} />
+                <Route
+                  path="/expertise/:expertiseId"
+                  element={<SingleExpertisePage />}
+                />
 
                 {/* Protected Admin Route */}
                 {isAdmin && (
@@ -111,20 +132,6 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { Suspense, useState } from "react";
 // import "./App.css";
@@ -184,22 +191,19 @@ export default App;
 //               <Route element={<Layout />}>
 //                 <Route path="/" element={<Website />} />
 
-
 //                 {/* <Route path="/properties">
 //                   <Route index element={<Properties />} />
 //                   <Route path=":id" element={<Property />} />
 //                 </Route> */}
 
-                
 //                 <Route path="/publications">
 //                   <Route index element={<Publications />} />
 //                   <Route path=":id" element={<Property />} />
 //                 </Route>
 
-// {/* 
-//                 <Route path="/properties" element={<Properties />} /> 
+// {/*
+//                 <Route path="/properties" element={<Properties />} />
 //                 <Route path="/properties/:id" element={<Property />} />  */}
-
 
 //                 <Route path="/expertise">
 //                   <Route index element={<ExpertisePage />} />

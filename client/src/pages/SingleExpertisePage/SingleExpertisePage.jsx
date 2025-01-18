@@ -17,7 +17,7 @@ const SingleExpertisePage = () => {
     .slice(0, 3);
 
   return (
-    <div>
+    <div className="bg-white">
       <section
         style={{
           backgroundImage: `url(${expertiseData.image})`,
@@ -30,7 +30,7 @@ const SingleExpertisePage = () => {
         <h1>{expertiseData.title}</h1>
       </section>
 
-      <section className="expertise-details">
+      <section className="expertise-details bg-white paddings innerWidth wrapper">
         <div className="tabs">
           <button>About</button>
           <button>Experience</button>

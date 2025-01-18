@@ -2,7 +2,7 @@ export const expertise = [
   {
     id: "corporate-commercial",
     title: "Corporate Commercial",
-    image: "/images/corporate-commercial.jpg",
+    image: "/cc3-1024x640-1.png",
     description:
       "Our Corporate Commercial practice covers a wide range of commercial, regulatory, and legal activities. We ensure that we understand the business of our clients.",
     keyMatters: [
@@ -20,7 +20,7 @@ export const expertise = [
   {
     id: "financial-institutions",
     title: "Financial Institutions & Capital Markets",
-    image: "/images/financial-institutions.jpg",
+    image: "/ficm-1024x640-1.png",
     description:
       "Providing innovative solutions for financial institutions and capital markets.",
     keyMatters: [
@@ -33,7 +33,7 @@ export const expertise = [
   {
     id: "corporate-commerciald",
     title: "Corporate Commercial",
-    image: "/images/corporate-commercial.jpg",
+    image: "/ei-1024x640-1.png",
     description:
       "Our Corporate Commercial practice covers a wide range of commercial, regulatory, and legal activities. We ensure that we understand the business of our clients.",
     keyMatters: [
@@ -51,7 +51,7 @@ export const expertise = [
   {
     id: "financial-institutionsd",
     title: "Financial Institutions & Capital Markets",
-    image: "/images/financial-institutions.jpg",
+    image: "/Dispute-resolution-practices-progressing-across-the-continent-Publication-1024x640-1.png",
     description:
       "Providing innovative solutions for financial institutions and capital markets.",
     keyMatters: [

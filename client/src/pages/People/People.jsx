@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import peopleData from "../../utils/people";
 import "./People.css"
+import { Link, useNavigate } from "react-router-dom";
 
 const People = () => {
+    const navigate = useNavigate();
   const [visibleCount, setVisibleCount] = useState(8);
 
   const loadMore = () => {
@@ -38,11 +40,12 @@ const People = () => {
       {/* People Grid */}
       <div className="people-grid space-up-up-up">
         {peopleData.slice(0, visibleCount).map((person, index) => (
-          <div key={index} className="person-card">
+          <Link to={`/people/${person.name}`} key={index} className="person-card" 
+          onClick={() => navigate(`/people/${encodeURIComponent(person.name)}`)}>
             <img className="people-image" src={person.picture} alt={person.name} />
             <p className="people-name">{person.name}</p>
             <p className="people-role">{person.role}</p>
-          </div>
+          </Link>
         ))}
       </div>
 
