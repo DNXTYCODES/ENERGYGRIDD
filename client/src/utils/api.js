@@ -2,9 +2,80 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
 
+
 export const api = axios.create({
-  baseURL: "https://dnxtsolarprojectttbackend.onrender.com/api", // Adjusted baseURL
+  baseURL: "https://energygridd.onrender.com/api", // Replace with your backend URL
 });
+
+// Get all publications
+export const getAllPublications = async () => {
+  try {
+    const response = await api.get("/publications");
+    return response.data;
+  } catch (error) {
+    toast.error("Failed to fetch publications");
+    throw error;
+  }
+};
+
+// Get all authors
+export const getAllAuthors = async () => {
+  try {
+    const response = await api.get("/authors");
+    return response.data;
+  } catch (error) {
+    toast.error("Failed to fetch authors");
+    throw error;
+  }
+};
+
+// Create a publication
+export const createPublication = async (data) => {
+  try {
+    const response = await api.post("/publications", data);
+    toast.success("Publication created successfully");
+    return response.data;
+  } catch (error) {
+    toast.error("Failed to create publication");
+    throw error;
+  }
+};
+
+// Create an author
+export const createAuthor = async (data) => {
+  try {
+    const response = await api.post("/authors", data);
+    toast.success("Author created successfully");
+    return response.data;
+  } catch (error) {
+    toast.error("Failed to create author");
+    throw error;
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const api = axios.create({
+//   baseURL: "https://dnxtsolarprojectttbackend.onrender.com/api", // Adjusted baseURL
+// });
 
 // Get all properties
 export const getAllProperties = async () => {

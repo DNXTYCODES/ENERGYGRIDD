@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 // app.use(cors())
 // app.use(cors({ origin: 'https://solarfrontend-c9rcwk11o-matthewcodezs-projects.vercel.app' }));
-app.use(cors({ origin: "https://dnxtsolarprojecttt.onrender.com" }));
+app.use(cors({ origin: "https://energygrid.onrender.com" }));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

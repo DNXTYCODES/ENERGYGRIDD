@@ -32,7 +32,7 @@ const About = () => {
       </div>
 
       {/* Body Section */}
-      <div className="body-section">
+      <div className="body-section bg-white">
         {/* Left Section with Pages */}
         <div className="left-section">
           <div className="headers">

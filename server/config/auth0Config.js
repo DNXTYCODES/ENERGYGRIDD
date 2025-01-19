@@ -314,7 +314,7 @@ const tokenRequestData = {
   client_secret: clientSecret,
   audience: audience,
   grant_type: "authorization_code",
-  redirect_uri: "https://dnxtsolarprojecttt.onrender.com",
+  redirect_uri: "https://energygrid.onrender.com",
   // grant_type: "client_credentials",
 };
 

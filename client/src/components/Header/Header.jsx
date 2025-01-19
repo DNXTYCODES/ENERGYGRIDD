@@ -14,7 +14,6 @@ const Header = () => {
   const headerColor = useHeaderColor();
   const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
 
-
   // Check if the logged-in user is an admin (for admin link visibility)
   const adminEmails = ["ayomatthew891@gmail.com", "admin2@example.com"];
   const isAdmin = isAuthenticated && user && adminEmails.includes(user.email);
@@ -40,11 +39,15 @@ const Header = () => {
             <NavLink to="/people">People</NavLink>
             <NavLink to="/about">About</NavLink>
 
-              <NavLink to="/expertise" className="admin-link">
-                expertise
-              </NavLink>
+            <NavLink to="/expertise">expertise</NavLink>
 
+            <NavLink to="/uploadauthor" className="admin-link">
+              upload author
+            </NavLink>
 
+            <NavLink to="/uploadpublication" className="admin-link">
+              upload publication
+            </NavLink>
 
             {/* Admin Link */}
             {isAdmin && (

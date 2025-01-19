@@ -8,35 +8,88 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  name             String?
-  email            String   @unique
-  image            String?
-  // role             String   @default("user") // New field for role
-  bookedVisits     Json[]
-  favResidenciesID String[] @db.ObjectId
+
+model Publication {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  image      String
+  title      String
+  writeup    String
+  authorId   String?  @map("author_idCode")
+  author     Author?  @relation(fields: [authorId], references: [author_idCode], onDelete: SetNull)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Author {
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  image          String
+  author_idCode  String       @unique
+  name           String
+  role           String
+  linkedIn       String
+  phoneNumber    String
+  email          String
+  about          String?
+  awards         String?
+  experience     String
+  publications   Publication[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }
 
 
 
-model Residency {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
-  // category    String
-  // author      String 
-  // price       Int
-  // address     String
-  // city        String
-  // country     String
-  image       String
-  // facilities  Json
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 
-  // @@unique(fields: [address])
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// model User {
+//   id               String   @id @default(auto()) @map("_id") @db.ObjectId
+//   name             String?
+//   email            String   @unique
+//   image            String?
+//   // role             String   @default("user") // New field for role
+//   bookedVisits     Json[]
+//   favResidenciesID String[] @db.ObjectId
+// }
+
+
+
+// model Residency {
+//   id          String   @id @default(auto()) @map("_id") @db.ObjectId
+//   title       String
+//   description String
+//   // category    String
+//   // author      String 
+//   // price       Int
+//   // address     String
+//   // city        String
+//   // country     String
+//   image       String
+//   // facilities  Json
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+
+//   // @@unique(fields: [address])
+// }
 
 
 // model Residency {
