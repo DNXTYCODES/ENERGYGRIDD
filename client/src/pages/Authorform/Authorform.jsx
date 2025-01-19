@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createAuthor } from "../../utils/api"; // Import the API call
-import "./AuthorForm.css"
+import "./Authorform.css"
 
 const AuthorForm = () => {
   const [formData, setFormData] = useState({
