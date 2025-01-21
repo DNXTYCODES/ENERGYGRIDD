@@ -1,21 +1,17 @@
 import axios from "axios";
-import dayjs from "dayjs";
 import { toast } from "react-toastify";
 
-
+// Set up Axios instance with the base URL
 export const api = axios.create({
   baseURL: "https://energygridd.onrender.com/api", // Replace with your backend URL
 });
 
-// Get all publications
-export const getAllPublications = async () => {
-  try {
-    const response = await api.get("/publications");
-    return response.data;
-  } catch (error) {
-    toast.error("Failed to fetch publications");
-    throw error;
-  }
+// Utility function to handle API errors
+const handleApiError = (error, customMessage) => {
+  const message =
+    error.response?.data?.message || customMessage || "Something went wrong!";
+  toast.error(message);
+  throw error;
 };
 
 // Get all authors
@@ -24,32 +20,101 @@ export const getAllAuthors = async () => {
     const response = await api.get("/authors");
     return response.data;
   } catch (error) {
-    toast.error("Failed to fetch authors");
-    throw error;
+    handleApiError(error, "Failed to fetch authors");
   }
 };
 
-// Create a publication
-export const createPublication = async (data) => {
+// Get all publications
+export const getAllPublications = async () => {
   try {
-    const response = await api.post("/publications", data);
-    toast.success("Publication created successfully");
+    const response = await api.get("/publications");
     return response.data;
   } catch (error) {
-    toast.error("Failed to create publication");
-    throw error;
+    handleApiError(error, "Failed to fetch publications");
   }
 };
 
-// Create an author
+// Create a new author
 export const createAuthor = async (data) => {
   try {
     const response = await api.post("/authors", data);
     toast.success("Author created successfully");
     return response.data;
   } catch (error) {
-    toast.error("Failed to create author");
-    throw error;
+    handleApiError(error, "Failed to create author");
+  }
+};
+
+// Create a new publication
+export const createPublication = async (data) => {
+  try {
+    const response = await api.post("/publications", data);
+    toast.success("Publication created successfully");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to create publication");
+  }
+};
+
+// Get a single author by ID
+export const getAuthorById = async (id) => {
+  try {
+    const response = await api.get(`/authors/${id}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to fetch author details");
+  }
+};
+
+// Get a single publication by ID
+export const getPublicationById = async (id) => {
+  try {
+    const response = await api.get(`/publications/${id}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to fetch publication details");
+  }
+};
+
+// Update an author by ID
+export const updateAuthor = async (id, data) => {
+  try {
+    const response = await api.put(`/authors/${id}`, data);
+    toast.success("Author updated successfully");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to update author");
+  }
+};
+
+// Update a publication by ID
+export const updatePublication = async (id, data) => {
+  try {
+    const response = await api.put(`/publications/${id}`, data);
+    toast.success("Publication updated successfully");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to update publication");
+  }
+};
+
+// Delete an author by ID
+export const deleteAuthor = async (id) => {
+  try {
+    await api.delete(`/authors/${id}`);
+    toast.success("Author deleted successfully");
+  } catch (error) {
+    handleApiError(error, "Failed to delete author");
+  }
+};
+
+// Delete a publication by ID
+export const deletePublication = async (id) => {
+  try {
+    await api.delete(`/publications/${id}`);
+    toast.success("Publication deleted successfully");
+  } catch (error) {
+    handleApiError(error, "Failed to delete publication");
   }
 };
 
@@ -69,13 +134,84 @@ export const createAuthor = async (data) => {
 
 
 
-
-
+// import axios from "axios";
+// import dayjs from "dayjs";
+// import { toast } from "react-toastify";
 
 
 // export const api = axios.create({
-//   baseURL: "https://dnxtsolarprojectttbackend.onrender.com/api", // Adjusted baseURL
+//   baseURL: "https://energygridd.onrender.com/api", // Replace with your backend URL
 // });
+
+// // Get all publications
+// export const getAllPublications = async () => {
+//   try {
+//     const response = await api.get("/publications");
+//     return response.data;
+//   } catch (error) {
+//     toast.error("Failed to fetch publications");
+//     throw error;
+//   }
+// };
+
+// // Get all authors
+// export const getAllAuthors = async () => {
+//   try {
+//     const response = await api.get("/authors");
+//     return response.data;
+//   } catch (error) {
+//     toast.error("Failed to fetch authors");
+//     throw error;
+//   }
+// };
+
+// // Create a publication
+// export const createPublication = async (data) => {
+//   try {
+//     const response = await api.post("/publications", data);
+//     toast.success("Publication created successfully");
+//     return response.data;
+//   } catch (error) {
+//     toast.error("Failed to create publication");
+//     throw error;
+//   }
+// };
+
+// // Create an author
+// export const createAuthor = async (data) => {
+//   try {
+//     const response = await api.post("/authors", data);
+//     toast.success("Author created successfully");
+//     return response.data;
+//   } catch (error) {
+//     toast.error("Failed to create author");
+//     throw error;
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // export const api = axios.create({
+// //   baseURL: "https://dnxtsolarprojectttbackend.onrender.com/api", // Adjusted baseURL
+// // });
 
 // Get all properties
 export const getAllProperties = async () => {
