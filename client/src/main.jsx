@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       authorizationParams={{
         redirect_uri: "https://energygrid.onrender.com",
       }}
-      audience="https://energygrid.onrender.com/"
+      audience="https://energygrid.onrender.com"
       scope="openid profile email"
     >
       <App />

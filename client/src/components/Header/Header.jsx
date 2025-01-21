@@ -57,13 +57,13 @@ const Header = () => {
             )}
 
             {/* Login/Logout Button */}
-            {/* {!isAuthenticated ? (
+            {!isAuthenticated ? (
               <button className="button" onClick={loginWithRedirect}>
                 Login
               </button>
             ) : (
               <ProfileMenu user={user} logout={logout} />
-            )} */}
+            )}
           </div>
         </OutsideClickHandler>
 
