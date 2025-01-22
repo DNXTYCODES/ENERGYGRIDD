@@ -36,15 +36,26 @@ export const getAllPublications = async () => {
 };
 
 // Create a new author
+// export const createAuthor = async (data) => {
+//   try {
+//     const response = await api.post("/authors", data);
+//     toast.success("Author created successfully");
+//     return response.data;
+//   } catch (error) {
+//     handleApiError(error, "Failed to create author");
+//   }
+// };
+
 export const createAuthor = async (data) => {
   try {
-    const response = await api.post("/authors", data);
+    const response = await api.post("/authors", { data }); // Wrapping under 'data'
     toast.success("Author created successfully");
     return response.data;
   } catch (error) {
     handleApiError(error, "Failed to create author");
   }
 };
+
 
 // Create a new publication
 export const createPublication = async (data) => {

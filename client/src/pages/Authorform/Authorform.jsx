@@ -220,8 +220,10 @@ const AuthorForm = () => {
       <input type="text" name="author_idCode" placeholder="Author ID Code" value={formData.author_idCode} onChange={handleChange}  />
       <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange}  />
       <input type="text" name="role" placeholder="Role" value={formData.role} onChange={handleChange}  />
-      <input type="url" name="linkedIn" placeholder="LinkedIn URL" value={formData.linkedIn} onChange={handleChange}  />
-      <input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange}  />
+      {/* <input type="url" name="linkedIn" placeholder="LinkedIn URL" value={formData.linkedIn} onChange={handleChange}  />
+      <input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange}  /> */}
+      <input type="text" name="linkedInUrl" placeholder="LinkedIn URL" value={formData.linkedInUrl} onChange={handleChange} />
+      <input type="text" name="contactDetails" placeholder="Contact Details" value={formData.contactDetails} onChange={handleChange} />
       <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange}  />
       <textarea name="about" placeholder="About" value={formData.about} onChange={handleChange} />
       <textarea name="awards" placeholder="Awards" value={formData.awards} onChange={handleChange} />
