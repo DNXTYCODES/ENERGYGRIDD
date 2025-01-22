@@ -216,18 +216,32 @@ const AuthorForm = () => {
   return (
     <form className="author-form" onSubmit={handleSubmit}>
       <h2>Add Author</h2>
-      <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} required />
-      <input type="text" name="author_idCode" placeholder="Author ID Code" value={formData.author_idCode} onChange={handleChange} required />
-      <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-      <input type="text" name="role" placeholder="Role" value={formData.role} onChange={handleChange} required />
-      <input type="url" name="linkedIn" placeholder="LinkedIn URL" value={formData.linkedIn} onChange={handleChange} required />
-      <input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} required />
-      <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
+      <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange}  />
+      <input type="text" name="author_idCode" placeholder="Author ID Code" value={formData.author_idCode} onChange={handleChange}  />
+      <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange}  />
+      <input type="text" name="role" placeholder="Role" value={formData.role} onChange={handleChange}  />
+      <input type="url" name="linkedIn" placeholder="LinkedIn URL" value={formData.linkedIn} onChange={handleChange}  />
+      <input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange}  />
+      <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange}  />
       <textarea name="about" placeholder="About" value={formData.about} onChange={handleChange} />
       <textarea name="awards" placeholder="Awards" value={formData.awards} onChange={handleChange} />
-      <textarea name="experience" placeholder="Experience" value={formData.experience} onChange={handleChange} required />
+      <textarea name="experience" placeholder="Experience" value={formData.experience} onChange={handleChange}  />
       <button type="submit">Submit</button>
     </form>
+    // <form className="author-form" onSubmit={handleSubmit}>
+    //   <h2>Add Author</h2>
+    //   <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} required />
+    //   <input type="text" name="author_idCode" placeholder="Author ID Code" value={formData.author_idCode} onChange={handleChange} required />
+    //   <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
+    //   <input type="text" name="role" placeholder="Role" value={formData.role} onChange={handleChange} required />
+    //   <input type="url" name="linkedIn" placeholder="LinkedIn URL" value={formData.linkedIn} onChange={handleChange} required />
+    //   <input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} required />
+    //   <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
+    //   <textarea name="about" placeholder="About" value={formData.about} onChange={handleChange} />
+    //   <textarea name="awards" placeholder="Awards" value={formData.awards} onChange={handleChange} />
+    //   <textarea name="experience" placeholder="Experience" value={formData.experience} onChange={handleChange} required />
+    //   <button type="submit">Submit</button>
+    // </form>
   );
 };
 
