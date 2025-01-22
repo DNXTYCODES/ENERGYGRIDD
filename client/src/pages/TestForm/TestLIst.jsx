@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchTests, deleteTest } from "../utils/api";
+import { fetchTests, deleteTest } from "../../utils/api";
 
 const TestList = () => {
   const [tests, setTests] = useState([]);
