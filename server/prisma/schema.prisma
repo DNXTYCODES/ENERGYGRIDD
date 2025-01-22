@@ -15,7 +15,7 @@ model Publication {
   title      String
   writeup    String
   authorId   String?  @map("author_idCode")
-  author     Author?  @relation(fields: [authorId], references: [author_idCode], onDelete: SetNull)
+  // author     Author?  @relation(fields: [authorId], references: [author_idCode], onDelete: SetNull)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
@@ -32,9 +32,14 @@ model Author {
   about          String?
   awards         String?
   experience     String
-  publications   Publication[]
+  // publications   Publication[]
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
+}
+
+model Test {
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
 }
 
 

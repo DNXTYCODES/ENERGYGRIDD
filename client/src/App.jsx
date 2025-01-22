@@ -31,6 +31,8 @@ import { services } from "./utils/serviceData";
 import About from "./pages/About/About";
 import AuthorForm from "./pages/Authorform/Authorform";
 import PublicationForm from "./pages/Publicationform/Publicationform";
+import TestForm from "./pages/TestForm/TestForm";
+import TestList from "./pages/TestForm/TestLIst";
 
 function App() {
   const queryClient = new QueryClient();
@@ -91,6 +93,9 @@ function App() {
                 />
                 <Route path="/uploadauthor" element={<AuthorForm />} /> 
                 <Route path="/uploadpublication" element={<PublicationForm />} /> 
+                <Route path="/testform" element={<TestForm />} /> 
+                <Route path="/testlist" element={<TestList />} /> 
+                
                 
 
                 {/* Protected Admin Route */}

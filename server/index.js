@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import testRoutes from "./routes/testRoutes.js";
+
+
 
 // Import routes
 import { userRoute } from "./routes/userRoute.js";
@@ -40,6 +43,8 @@ app.use("/api/residency", residencyRoute);
 // app.use("/api", apiRoutes);
 app.use("/api/authors", authorRoutes); // New: Author routes
 app.use("/api/publications", publicationRoutes); // New: Publication routes
+app.use("/api/tests", testRoutes);
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {

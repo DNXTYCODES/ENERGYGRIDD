@@ -126,7 +126,7 @@ const AuthorForm = () => {
         onChange={handleChange}
         required
       />
-      <button type="submit">Submit</button>
+    <button type="submit">Submit</button>
     </form>
   );
 };

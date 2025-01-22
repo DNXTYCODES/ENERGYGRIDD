@@ -15,6 +15,67 @@ const handleApiError = (error, customMessage) => {
   throw error;
 };
 
+
+
+
+
+// Fetch all tests
+export const fetchTests = async () => {
+  try {
+    const response = await api.get("/tests");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to fetch tests");
+  }
+};
+
+// Fetch a single test by ID
+export const fetchTestById = async (id) => {
+  try {
+    const response = await api.get(`/tests/${id}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to fetch test details");
+  }
+};
+
+// Create a new test
+export const createTest = async (testData) => {
+  try {
+    const response = await api.post("/tests", testData);
+    toast.success("Test created successfully!");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to create test");
+  }
+};
+
+// Update a test by ID
+export const updateTest = async (id, testData) => {
+  try {
+    const response = await api.put(`/tests/${id}`, testData);
+    toast.success("Test updated successfully!");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to update test");
+  }
+};
+
+// Delete a test by ID
+export const deleteTest = async (id) => {
+  try {
+    const response = await api.delete(`/tests/${id}`);
+    toast.success("Test deleted successfully!");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to delete test");
+  }
+};
+
+
+
+
+
 // Get all authors
 export const getAllAuthors = async () => {
   try {

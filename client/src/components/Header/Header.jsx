@@ -48,6 +48,12 @@ const Header = () => {
             <NavLink to="/uploadpublication" className="admin-link">
               upload publication
             </NavLink>
+            <NavLink to="/testform" className="admin-link">
+              testform
+            </NavLink>
+            <NavLink to="/testlink" className="admin-link">
+              testlink
+            </NavLink>
 
             {/* Admin Link */}
             {isAdmin && (
