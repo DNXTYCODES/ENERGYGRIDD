@@ -51,8 +51,8 @@ const Header = () => {
             <NavLink to="/testform" className="admin-link">
               testform
             </NavLink>
-            <NavLink to="/testlink" className="admin-link">
-              testlink
+            <NavLink to="/testlist" className="admin-link">
+              testlist
             </NavLink>
 
             {/* Admin Link */}

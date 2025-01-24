@@ -17,61 +17,6 @@ const handleApiError = (error, customMessage) => {
 
 
 
-// Fetch all authors
-export const fetchAuthors = async () => {
-  try {
-    const response = await api.get("/authors");
-    return response.data;
-  } catch (error) {
-    handleApiError(error, "Failed to fetch authors");
-  }
-};
-
-// Fetch a single author by ID
-export const fetchAuthorById = async (id) => {
-  try {
-    const response = await api.get(`/authors/${id}`);
-    return response.data;
-  } catch (error) {
-    handleApiError(error, "Failed to fetch author details");
-  }
-};
-
-// Create a new author
-export const createAuthor = async (authorData) => {
-  try {
-    const response = await api.post("/authors", authorData);
-    toast.success("Author created successfully!");
-    return response.data;
-  } catch (error) {
-    handleApiError(error, "Failed to create author");
-  }
-};
-
-// Update an author by ID
-export const updateAuthor = async (id, authorData) => {
-  try {
-    const response = await api.put(`/authors/${id}`, authorData);
-    toast.success("Author updated successfully!");
-    return response.data;
-  } catch (error) {
-    handleApiError(error, "Failed to update author");
-  }
-};
-
-// Delete an author by ID
-export const deleteAuthor = async (id) => {
-  try {
-    const response = await api.delete(`/authors/${id}`);
-    toast.success("Author deleted successfully!");
-    return response.data;
-  } catch (error) {
-    handleApiError(error, "Failed to delete author");
-  }
-};
-
-
-
 
 
 // Fetch all tests
@@ -126,6 +71,127 @@ export const deleteTest = async (id) => {
     handleApiError(error, "Failed to delete test");
   }
 };
+
+
+
+
+
+// Get all authors
+export const getAllAuthors = async () => {
+  try {
+    const response = await api.get("/authors");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to fetch authors");
+  }
+};
+
+// Get all publications
+export const getAllPublications = async () => {
+  try {
+    const response = await api.get("/publications");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to fetch publications");
+  }
+};
+
+// Create a new author
+// export const createAuthor = async (data) => {
+//   try {
+//     const response = await api.post("/authors", data);
+//     toast.success("Author created successfully");
+//     return response.data;
+//   } catch (error) {
+//     handleApiError(error, "Failed to create author");
+//   }
+// };
+
+export const createAuthor = async (data) => {
+  try {
+    const response = await api.post("/authors", { data }); // Wrapping under 'data'
+    toast.success("Author created successfully");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to create author");
+  }
+};
+
+
+// Create a new publication
+export const createPublication = async (data) => {
+  try {
+    const response = await api.post("/publications", data);
+    toast.success("Publication created successfully");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to create publication");
+  }
+};
+
+// Get a single author by ID
+export const getAuthorById = async (id) => {
+  try {
+    const response = await api.get(`/authors/${id}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to fetch author details");
+  }
+};
+
+// Get a single publication by ID
+export const getPublicationById = async (id) => {
+  try {
+    const response = await api.get(`/publications/${id}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to fetch publication details");
+  }
+};
+
+// Update an author by ID
+export const updateAuthor = async (id, data) => {
+  try {
+    const response = await api.put(`/authors/${id}`, data);
+    toast.success("Author updated successfully");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to update author");
+  }
+};
+
+// Update a publication by ID
+export const updatePublication = async (id, data) => {
+  try {
+    const response = await api.put(`/publications/${id}`, data);
+    toast.success("Publication updated successfully");
+    return response.data;
+  } catch (error) {
+    handleApiError(error, "Failed to update publication");
+  }
+};
+
+// Delete an author by ID
+export const deleteAuthor = async (id) => {
+  try {
+    await api.delete(`/authors/${id}`);
+    toast.success("Author deleted successfully");
+  } catch (error) {
+    handleApiError(error, "Failed to delete author");
+  }
+};
+
+// Delete a publication by ID
+export const deletePublication = async (id) => {
+  try {
+    await api.delete(`/publications/${id}`);
+    toast.success("Publication deleted successfully");
+  } catch (error) {
+    handleApiError(error, "Failed to delete publication");
+  }
+};
+
+
 
 
 
