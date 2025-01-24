@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,80 +7,87 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model Publication {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  image      String
-  title      String
-  writeup    String
-  authorId   String?  @map("author_idCode")
-  // author     Author?  @relation(fields: [authorId], references: [author_idCode], onDelete: SetNull)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+model Author {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  image     String
+  uniqueId  String   @unique
+  name      String
+  role      String
+  phone     String
+  email     String  @unique
+  about     String
+  awards    String
+  experience String
+  // publications List<Publication> @relation(fields: [id], references: [authorId])
 }
 
-model Author {
-  id             String       @id @default(auto()) @map("_id") @db.ObjectId
-  image          String
-  author_idCode  String       @unique
-  name           String
-  role           String
-  linkedIn       String
-  phoneNumber    String
-  email          String
-  about          String?
-  awards         String?
-  experience     String
-  // publications   Publication[]
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+model Publication {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  category    String
+  // authors    Author[] @relation(fields: [authorId], references: [uniqueId])
+  authorId    String[]
+  dateCreated DateTime @default(now())
 }
 
 model Test {
-  id             String       @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-}
-
-
-
-
-
-model User {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  name             String?
-  email            String   @unique
-  image            String?
-  // role             String   @default("user") // New field for role
-  bookedVisits     Json[]
-  favResidenciesID String[] @db.ObjectId
-}
-
-
-
-model Residency {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
-  // category    String
-  // author      String 
-  // price       Int
-  // address     String
-  // city        String
-  // country     String
-  image       String
-  // facilities  Json
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  // @@unique(fields: [address])
+  name        String
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "mongodb"
+//   url      = env("DATABASE_URL")
+// }
+
+// model Test {
+//   id             String       @id @default(auto()) @map("_id") @db.ObjectId
+//   name           String
+// }
+
+
+
+
+
+// model User {
+//   id               String   @id @default(auto()) @map("_id") @db.ObjectId
+//   name             String?
+//   email            String   @unique
+//   image            String?
+//   // role             String   @default("user") // New field for role
+//   bookedVisits     Json[]
+//   favResidenciesID String[] @db.ObjectId
+// }
+
 
 
 // model Residency {
 //   id          String   @id @default(auto()) @map("_id") @db.ObjectId
 //   title       String
 //   description String
-//   price       Int
+//   // category    String
+//   // author      String 
+//   // price       Int
 //   // address     String
 //   // city        String
 //   // country     String
@@ -92,3 +98,20 @@ model Residency {
 
 //   // @@unique(fields: [address])
 // }
+
+
+// // model Residency {
+// //   id          String   @id @default(auto()) @map("_id") @db.ObjectId
+// //   title       String
+// //   description String
+// //   price       Int
+// //   // address     String
+// //   // city        String
+// //   // country     String
+// //   image       String
+// //   // facilities  Json
+// //   createdAt   DateTime @default(now())
+// //   updatedAt   DateTime @updatedAt
+
+// //   // @@unique(fields: [address])
+// // }

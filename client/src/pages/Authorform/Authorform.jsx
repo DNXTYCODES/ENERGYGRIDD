@@ -1,390 +1,214 @@
-import React, { useState } from "react";
-import { createAuthor } from "../../utils/api"; // Import the API call
-import "./Authorform.css";
+import React, { useState, useEffect } from 'react';
+import { createAuthor } from '../../utils/api';
+import { fetchPublications } from '../../utils/api'; 
 
 const AuthorForm = () => {
-  const [formData, setFormData] = useState({
-    image: "",
-    author_idCode: "",
-    name: "",
-    role: "",
-    linkedIn: "",
-    phoneNumber: "",
-    email: "",
-    about: "",
-    awards: "",
-    experience: "",
+  const [authorData, setAuthorData] = useState({
+    image: '',
+    uniqueId: '',
+    name: '',
+    role: '',
+    phone: '',
+    email: '',
+    about: '',
+    awards: '',
+    experience: '',
+    publications: [], 
   });
+
+  const [publications, setPublications] = useState([]); 
+
+  useEffect(() => {
+    const fetchAllPublications = async () => {
+      try {
+        const allPublications = await fetchPublications();
+        setPublications(allPublications);
+      } catch (error) {
+        console.error('Error fetching publications:', error);
+      }
+    };
+    fetchAllPublications();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setAuthorData({ ...authorData, [name]: value });
+  };
+
+  const handlePublicationSelect = (event) => {
+    const selectedPublicationId = event.target.value;
+    // Check if the publication is already selected
+    if (authorData.publications.includes(selectedPublicationId)) {
+      // Remove the publication from the list
+      setAuthorData({
+        ...authorData,
+        publications: authorData.publications.filter(
+          (id) => id !== selectedPublicationId
+        ),
+      });
+    } else {
+      // Add the publication to the list
+      setAuthorData({
+        ...authorData,
+        publications: [...authorData.publications, selectedPublicationId],
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Wrap formData in the required structure
-      const payload = { data: { ...formData } };
-      await createAuthor(payload);
-
-      alert("Author created successfully!");
-      // Reset the form after successful submission
-      setFormData({
-        image: "",
-        author_idCode: "",
-        name: "",
-        role: "",
-        linkedIn: "",
-        phoneNumber: "",
-        email: "",
-        about: "",
-        awards: "",
-        experience: "",
+      await createAuthor(authorData);
+      // Handle successful submission (e.g., clear form, display success message)
+      setAuthorData({
+        image: '',
+        uniqueId: '',
+        name: '',
+        role: '',
+        phone: '',
+        email: '',
+        about: '',
+        awards: '',
+        experience: '',
+        publications: [],
       });
+      alert('Author created successfully!'); // Simple success message
     } catch (error) {
-      alert("Failed to create author. Please try again.");
-      console.error("Error creating author:", error);
+      // Handle errors (e.g., display error messages)
+      console.error('Error creating author:', error);
+      alert('Error creating author. Please try again.');
     }
   };
 
   return (
-    <form className="author-form" onSubmit={handleSubmit}>
-      <h2>Add Author</h2>
-      <input
-        type="text"
-        name="image"
-        placeholder="Image URL"
-        value={formData.image}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="author_idCode"
-        placeholder="Author ID Code"
-        value={formData.author_idCode}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="role"
-        placeholder="Role"
-        value={formData.role}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="url"
-        name="linkedIn"
-        placeholder="LinkedIn URL"
-        value={formData.linkedIn}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="tel"
-        name="phoneNumber"
-        placeholder="Phone Number"
-        value={formData.phoneNumber}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-      <textarea
-        name="about"
-        placeholder="About"
-        value={formData.about}
-        onChange={handleChange}
-      />
-      <textarea
-        name="awards"
-        placeholder="Awards"
-        value={formData.awards}
-        onChange={handleChange}
-      />
-      <textarea
-        name="experience"
-        placeholder="Experience"
-        value={formData.experience}
-        onChange={handleChange}
-        required
-      />
-    <button type="submit">Submit</button>
-    </form>
+    <div className="container">
+      <h2 className="text-center mb-4">Add Author</h2>
+      <form onSubmit={handleSubmit} className="form">
+        <div className="form-group">
+          <label htmlFor="image">Image URL:</label>
+          <input 
+            type="text" 
+            id="image" 
+            name="image" 
+            value={authorData.image} 
+            onChange={handleChange} 
+            className="form-control" 
+            placeholder="Enter Image URL" 
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="uniqueId">Unique ID:</label>
+          <input 
+            type="text" 
+            id="uniqueId" 
+            name="uniqueId" 
+            value={authorData.uniqueId} 
+            onChange={handleChange} 
+            className="form-control" 
+            placeholder="Enter Unique ID" 
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            value={authorData.name} 
+            onChange={handleChange} 
+            className="form-control" 
+            placeholder="Enter Name" 
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="role">Role:</label>
+          <input 
+            type="text" 
+            id="role" 
+            name="role" 
+            value={authorData.role} 
+            onChange={handleChange} 
+            className="form-control" 
+            placeholder="Enter Role" 
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Phone Number:</label>
+          <input 
+            type="text" 
+            id="phone" 
+            name="phone" 
+            value={authorData.phone} 
+            onChange={handleChange} 
+            className="form-control" 
+            placeholder="Enter Phone Number" 
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            value={authorData.email} 
+            onChange={handleChange} 
+            className="form-control" 
+            placeholder="Enter Email" 
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="about">About:</label>
+          <textarea 
+            id="about" 
+            name="about" 
+            value={authorData.about} 
+            onChange={handleChange} 
+            className="form-control" 
+            placeholder="Enter About" 
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="awards">Awards:</label>
+          <textarea 
+            id="awards" 
+            name="awards" 
+            value={authorData.awards} 
+            onChange={handleChange} 
+            className="form-control" 
+            placeholder="Enter Awards" 
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="experience">Experience:</label>
+          <textarea 
+            id="experience" 
+            name="experience" 
+            value={authorData.experience} 
+            onChange={handleChange} 
+            className="form-control" 
+            placeholder="Enter Experience" 
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="publications">Publications:</label>
+          <select 
+            id="publications" 
+            name="publications" 
+            multiple 
+            onChange={handlePublicationSelect} 
+            className="form-control" 
+          >
+            {publications.map((publication) => (
+              <option key={publication.id} value={publication.id}>
+                {publication.title}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button type="submit" className="btn btn-primary">Create Author</button>
+      </form>
+    </div>
   );
 };
 
 export default AuthorForm;
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-
-// const AuthorForm = () => {
-//   const [formData, setFormData] = useState({
-//     image: "",
-//     author_idCode: "",
-//     name: "",
-//     role: "",
-//     linkedin: "",
-//     phone: "",
-//     email: "",
-//     testimonial: "",
-//     awards: "",
-//     experience: "",
-//     publications: "",
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // Handle API call here
-//     console.log(formData);
-//   };
-
-//   return (
-//     <div className="max-w-lg mx-auto p-8 bg-white shadow-md rounded-lg">
-//       <h2 className="text-2xl font-bold mb-4 text-center">Add Author</h2>
-//       <form onSubmit={handleSubmit} className="space-y-4">
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Image URL</label>
-//           <input
-//             type="text"
-//             name="image"
-//             value={formData.image}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">
-//             Author ID Code
-//           </label>
-//           <input
-//             type="text"
-//             name="author_idCode"
-//             value={formData.author_idCode}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Name</label>
-//           <input
-//             type="text"
-//             name="name"
-//             value={formData.name}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Role</label>
-//           <input
-//             type="text"
-//             name="role"
-//             value={formData.role}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">LinkedIn URL</label>
-//           <input
-//             type="url"
-//             name="linkedin"
-//             value={formData.linkedin}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Phone</label>
-//           <input
-//             type="text"
-//             name="phone"
-//             value={formData.phone}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Email</label>
-//           <input
-//             type="email"
-//             name="email"
-//             value={formData.email}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Testimonial</label>
-//           <textarea
-//             name="testimonial"
-//             value={formData.testimonial}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           ></textarea>
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Awards</label>
-//           <textarea
-//             name="awards"
-//             value={formData.awards}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           ></textarea>
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Experience</label>
-//           <textarea
-//             name="experience"
-//             value={formData.experience}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           ></textarea>
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">
-//             Publications
-//           </label>
-//           <textarea
-//             name="publications"
-//             value={formData.publications}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           ></textarea>
-//         </div>
-//         <button
-//           type="submit"
-//           className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
-//         >
-//           Submit
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default AuthorForm;
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-// import { createAuthor } from "../../utils/api"; // Import the API call
-// import "./Authorform.css"
-
-// const AuthorForm = () => {
-//   const [formData, setFormData] = useState({
-//     image: "",
-//     author_idCode: "",
-//     name: "",
-//     role: "",
-//     linkedIn: "",
-//     phoneNumber: "",
-//     email: "",
-//     about: "",
-//     awards: "",
-//     experience: "",
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await createAuthor(formData);
-//       alert("Author created successfully!");
-//       setFormData({
-//         image: "",
-//         author_idCode: "",
-//         name: "",
-//         role: "",
-//         linkedIn: "",
-//         phoneNumber: "",
-//         email: "",
-//         about: "",
-//         awards: "",
-//         experience: "",
-//       });
-//     } catch (error) {
-//       alert("Failed to create author. Please try again.");
-//       console.error("Error creating author:", error);
-//     }
-//   };
-
-//   return (
-//     <form className="author-form" onSubmit={handleSubmit}>
-//       <h2>Add Author</h2>
-//       <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange}  />
-//       <input type="text" name="author_idCode" placeholder="Author ID Code" value={formData.author_idCode} onChange={handleChange}  />
-//       <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange}  />
-//       <input type="text" name="role" placeholder="Role" value={formData.role} onChange={handleChange}  />
-//       <input type="url" name="linkedIn" placeholder="LinkedIn URL" value={formData.linkedIn} onChange={handleChange}  />
-//       <input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange}  />
-//       <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange}  />
-//       <textarea name="about" placeholder="About" value={formData.about} onChange={handleChange} />
-//       <textarea name="awards" placeholder="Awards" value={formData.awards} onChange={handleChange} />
-//       <textarea name="experience" placeholder="Experience" value={formData.experience} onChange={handleChange}  />
-//       <button type="submit">Submit</button>
-//     </form>
-//     // <form className="author-form" onSubmit={handleSubmit}>
-//     //   <h2>Add Author</h2>
-//     //   <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} required />
-//     //   <input type="text" name="author_idCode" placeholder="Author ID Code" value={formData.author_idCode} onChange={handleChange} required />
-//     //   <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-//     //   <input type="text" name="role" placeholder="Role" value={formData.role} onChange={handleChange} required />
-//     //   <input type="url" name="linkedIn" placeholder="LinkedIn URL" value={formData.linkedIn} onChange={handleChange} required />
-//     //   <input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} required />
-//     //   <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-//     //   <textarea name="about" placeholder="About" value={formData.about} onChange={handleChange} />
-//     //   <textarea name="awards" placeholder="Awards" value={formData.awards} onChange={handleChange} />
-//     //   <textarea name="experience" placeholder="Experience" value={formData.experience} onChange={handleChange} required />
-//     //   <button type="submit">Submit</button>
-//     // </form>
-//   );
-// };
-
-// export default AuthorForm;
