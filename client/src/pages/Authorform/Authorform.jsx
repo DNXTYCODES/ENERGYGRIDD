@@ -10,7 +10,7 @@ const AuthorForm = () => {
     role: "",
     linkedIn: "",
     phoneNumber: "",
-    email: "",
+    // email: "",
     about: "",
     awards: "",
     experience: "",
