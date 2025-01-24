@@ -37,7 +37,7 @@ const AuthorForm = () => {
         role: "",
         linkedIn: "",
         phoneNumber: "",
-        email: "",
+        // email: "",
         about: "",
         awards: "",
         experience: "",
@@ -99,14 +99,14 @@ const AuthorForm = () => {
         onChange={handleChange}
         required
       />
-      <input
+      {/* <input
         type="email"
         name="email"
         placeholder="Email"
         value={formData.email}
         onChange={handleChange}
         required
-      />
+      /> */}
       <textarea
         name="about"
         placeholder="About"
