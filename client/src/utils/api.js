@@ -107,15 +107,33 @@ export const getAllPublications = async () => {
 //   }
 // };
 
+// export const createAuthor = async (data) => {
+//   try {
+//     const response = await api.post("/authors", { data }); // Wrapping under 'data'
+//     toast.success("Author created successfully");
+//     return response.data;
+//   } catch (error) {
+//     handleApiError(error, "Failed to create author");
+//   }
+// };
+
+
+
+import { toast } from "react-toastify"; // Assuming toast is used for notifications
+import { api } from "./axiosInstance"; // Assuming you use axios
+
 export const createAuthor = async (data) => {
   try {
-    const response = await api.post("/authors", { data }); // Wrapping under 'data'
+    const response = await api.post("/authors", data); // Remove extra `data` wrapping
     toast.success("Author created successfully");
     return response.data;
   } catch (error) {
-    handleApiError(error, "Failed to create author");
+    toast.error("Failed to create author");
+    console.error("Error creating author:", error);
+    throw error;
   }
 };
+
 
 
 // Create a new publication

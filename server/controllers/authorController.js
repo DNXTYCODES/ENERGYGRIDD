@@ -10,52 +10,52 @@ const createErrorResponse = (res, statusCode, message, error = null) => {
 };
 
 // Create a new author
-export const createAuthor = asyncHandler(async (req, res) => {
-  const {
-    image,
-    author_idCode,
-    name,
-    role,
-    linkedIn,
-    phoneNumber,
-    about,
-    awards,
-    experience,
-    publications,
-  } = req.body?.data || {};
+// export const createAuthor = asyncHandler(async (req, res) => {
+//   const {
+//     image,
+//     author_idCode,
+//     name,
+//     role,
+//     linkedIn,
+//     phoneNumber,
+//     about,
+//     awards,
+//     experience,
+//     publications,
+//   } = req.body?.data || {};
 
-  if (!author_idCode || !name) {
-    return createErrorResponse(res, 400, "Author ID code and name are required.");
-  }
+//   if (!author_idCode || !name) {
+//     return createErrorResponse(res, 400, "Author ID code and name are required.");
+//   }
 
-  try {
-    const author = await prisma.author.create({
-      data: {
-        image,
-        author_idCode,
-        name,
-        role,
-        linkedIn,
-        phoneNumber,
-        about,
-        awards,
-        experience,
-        publications,
-      },
-    });
-    res.status(201).json({ message: "Author created successfully", author });
-  } catch (err) {
-    if (err.code === "P2002") {
-      return createErrorResponse(
-        res,
-        409,
-        "An author with this author_idCode already exists.",
-        err
-      );
-    }
-    return createErrorResponse(res, 500, "Internal server error.", err);
-  }
-});
+//   try {
+//     const author = await prisma.author.create({
+//       data: {
+//         image,
+//         author_idCode,
+//         name,
+//         role,
+//         linkedIn,
+//         phoneNumber,
+//         about,
+//         awards,
+//         experience,
+//         publications,
+//       },
+//     });
+//     res.status(201).json({ message: "Author created successfully", author });
+//   } catch (err) {
+//     if (err.code === "P2002") {
+//       return createErrorResponse(
+//         res,
+//         409,
+//         "An author with this author_idCode already exists.",
+//         err
+//       );
+//     }
+//     return createErrorResponse(res, 500, "Internal server error.", err);
+//   }
+// });
 
 // export const createAuthor = asyncHandler(async (req, res) => {
 //   const {
@@ -106,6 +106,62 @@ export const createAuthor = asyncHandler(async (req, res) => {
 
 
 // Get all authors
+
+
+export const createAuthor = asyncHandler(async (req, res) => {
+  const {
+    image,
+    author_idCode,
+    name,
+    role,
+    linkedIn,
+    phoneNumber,
+    about,
+    awards,
+    experience,
+    publications,
+  } = req.body; // Access directly from `req.body`
+
+  if (!author_idCode || !name) {
+    return createErrorResponse(res, 400, "Author ID code and name are required.");
+  }
+
+  try {
+    const author = await prisma.author.create({
+      data: {
+        image,
+        author_idCode,
+        name,
+        role,
+        linkedIn,
+        phoneNumber,
+        about,
+        awards,
+        experience,
+        publications,
+      },
+    });
+    res.status(201).json({ message: "Author created successfully", author });
+  } catch (err) {
+    if (err.code === "P2002") {
+      return createErrorResponse(
+        res,
+        409,
+        "An author with this author_idCode already exists.",
+        err
+      );
+    }
+    return createErrorResponse(res, 500, "Internal server error.", err);
+  }
+});
+
+
+
+
+
+
+
+
 export const getAllAuthors = asyncHandler(async (req, res) => {
   try {
     const authors = await prisma.author.findMany({
