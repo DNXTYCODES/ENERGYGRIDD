@@ -40,9 +40,6 @@ app.use(cors({ origin: "https://energygrid.onrender.com" }));
 // Routes
 app.use("/api/user", userRoute);
 app.use("/api/residency", residencyRoute);
-// app.use("/api", apiRoutes);
-app.use("/api/authors", authorRoutes); // New: Author routes
-app.use("/api/publications", publicationRoutes); // New: Publication routes
 app.use("/api/tests", testRoutes);
 
 

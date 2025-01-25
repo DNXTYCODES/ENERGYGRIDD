@@ -41,7 +41,7 @@ const Header = () => {
 
             <NavLink to="/expertise">expertise</NavLink>
 
-            <NavLink to="/uploadauthor" className="admin-link">
+            <NavLink to="/authorform" className="admin-link">
               upload author
             </NavLink>
 

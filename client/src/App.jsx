@@ -29,10 +29,9 @@ import SingleExpertisePage from "./pages/SingleExpertisePage/SingleExpertisePage
 import ServicePage from "./pages/ServicePage/ServicePage";
 import { services } from "./utils/serviceData";
 import About from "./pages/About/About";
-import AuthorForm from "./pages/Authorform/Authorform";
-import PublicationForm from "./pages/Publicationform/Publicationform";
 import TestForm from "./pages/TestForm/TestForm";
 import TestList from "./pages/TestForm/TestLIst";
+import AuthorForm from "./pages/Authorform/Authorform";
 
 function App() {
   const queryClient = new QueryClient();
@@ -76,6 +75,7 @@ function App() {
 
                 {/* Other Routes */}
 
+                <Route path="/authorform" element={<AuthorForm />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/bookings" element={<Bookings />} />
                 <Route path="/favourites" element={<Favourites />} />
@@ -91,8 +91,6 @@ function App() {
                   path="/expertise/:expertiseId"
                   element={<SingleExpertisePage />}
                 />
-                <Route path="/uploadauthor" element={<AuthorForm />} /> 
-                <Route path="/uploadpublication" element={<PublicationForm />} /> 
                 <Route path="/testform" element={<TestForm />} /> 
                 <Route path="/testlist" element={<TestList />} /> 
                 
@@ -168,9 +166,7 @@ export default App;
 // import SingleExpertisePage from "./pages/SingleExpertisePage/SingleExpertisePage";
 // import ServicePage from "./pages/ServicePage/ServicePage";
 // import { services } from "./utils/serviceData";
-// import About from "./pages/About/About";
-// import AuthorForm from "./pages/Authorform/Authorform";
-// import PublicationForm from "./pages/Publicationform/Publicationform";
+// import About from "./pages/About/About";;
 
 // function App() {
 //   const queryClient = new QueryClient();
@@ -229,8 +225,6 @@ export default App;
 //                   path="/expertise/:expertiseId"
 //                   element={<SingleExpertisePage />}
 //                 />
-//                 <Route path="/uploadauthor" element={<AuthorForm />} /> 
-//                 <Route path="/uploadpublication" element={<PublicationForm />} /> 
                 
 
 //                 {/* Protected Admin Route */}

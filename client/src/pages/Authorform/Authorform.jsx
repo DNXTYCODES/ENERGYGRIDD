@@ -1,21 +1,15 @@
-import React, { useState } from "react";
-import { createAuthor } from "../../utils/api"; // Import the API call
-import "./Authorform.css";
+// JSX Form for Author Management
+import React, { useState, useEffect } from "react";
+import { createAuthor, updateAuthor, fetchAuthorById } from "../../utils/api";
+import { toast } from "react-toastify";
 
-const AuthorForm = () => {
+const AuthorForm = ({ authorId, onSuccess }) => {
   const [formData, setFormData] = useState({
-    image: "",
-    author_idCode: "",
     name: "",
     role: "",
-    linkedIn: "",
-    phoneNumber: "",
     about: "",
-    awards: "",
     experience: "",
   });
-
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,56 +18,43 @@ const AuthorForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
     try {
-      // Ensure no nested `data` wrapper in the payload
-      await createAuthor(formData);
-      alert("Author created successfully!");
-      setFormData({
-        image: "",
-        author_idCode: "",
-        name: "",
-        role: "",
-        linkedIn: "",
-        phoneNumber: "",
-        about: "",
-        awards: "",
-        experience: "",
-      });
+      if (authorId) {
+        await updateAuthor(authorId, formData);
+        toast.success("Author updated successfully!");
+      } else {
+        await createAuthor(formData);
+        toast.success("Author created successfully!");
+      }
+      onSuccess && onSuccess();
     } catch (error) {
-      alert("Failed to create author. Please try again.");
-      console.error("Error creating author:", error);
-    } finally {
-      setLoading(false);
+      toast.error("Failed to save author details.");
     }
   };
 
+  useEffect(() => {
+    const fetchAuthor = async () => {
+      if (authorId) {
+        try {
+          const author = await fetchAuthorById(authorId);
+          setFormData(author);
+        } catch (error) {
+          toast.error("Failed to fetch author details.");
+        }
+      }
+    };
+    fetchAuthor();
+  }, [authorId]);
+
   return (
-    <form className="author-form" onSubmit={handleSubmit}>
-      <h2>Add Author</h2>
-      <input
-        type="text"
-        name="image"
-        placeholder="Image URL"
-        value={formData.image}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="author_idCode"
-        placeholder="Author ID Code"
-        value={formData.author_idCode}
-        onChange={handleChange}
-        required
-      />
+    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem", maxWidth: "400px", margin: "0 auto" }}>
       <input
         type="text"
         name="name"
         placeholder="Name"
         value={formData.name}
         onChange={handleChange}
+        style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "5px" }}
         required
       />
       <input
@@ -82,22 +63,7 @@ const AuthorForm = () => {
         placeholder="Role"
         value={formData.role}
         onChange={handleChange}
-        required
-      />
-      <input
-        type="url"
-        name="linkedIn"
-        placeholder="LinkedIn URL"
-        value={formData.linkedIn}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="tel"
-        name="phoneNumber"
-        placeholder="Phone Number"
-        value={formData.phoneNumber}
-        onChange={handleChange}
+        style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "5px" }}
         required
       />
       <textarea
@@ -105,22 +71,20 @@ const AuthorForm = () => {
         placeholder="About"
         value={formData.about}
         onChange={handleChange}
-      />
-      <textarea
-        name="awards"
-        placeholder="Awards"
-        value={formData.awards}
-        onChange={handleChange}
-      />
-      <textarea
+        style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "5px", minHeight: "100px" }}
+        required
+      ></textarea>
+      <input
+        type="number"
         name="experience"
-        placeholder="Experience"
+        placeholder="Experience (years)"
         value={formData.experience}
         onChange={handleChange}
+        style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "5px" }}
         required
       />
-      <button type="submit" disabled={loading}>
-        {loading ? "Submitting..." : "Submit"}
+      <button type="submit" style={{ padding: "10px", backgroundColor: "#007BFF", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+        {authorId ? "Update Author" : "Create Author"}
       </button>
     </form>
   );
@@ -128,403 +92,52 @@ const AuthorForm = () => {
 
 export default AuthorForm;
 
+// Utility Module for API Service Management
 
-
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-// import { createAuthor } from "../../utils/api"; // Import the API call
-// import "./Authorform.css";
-
-// const AuthorForm = () => {
-//   const [formData, setFormData] = useState({
-//     image: "",
-//     author_idCode: "",
-//     name: "",
-//     role: "",
-//     linkedIn: "",
-//     phoneNumber: "",
-//     // email: "",
-//     about: "",
-//     awards: "",
-//     experience: "",
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       // Wrap formData in the required structure
-//       const payload = { data: { ...formData } };
-//       await createAuthor(payload);
-
-//       alert("Author created successfully!");
-//       // Reset the form after successful submission
-//       setFormData({
-//         image: "",
-//         author_idCode: "",
-//         name: "",
-//         role: "",
-//         linkedIn: "",
-//         phoneNumber: "",
-//         // email: "",
-//         about: "",
-//         awards: "",
-//         experience: "",
-//       });
-//     } catch (error) {
-//       alert("Failed to create author. Please try again.");
-//       console.error("Error creating author:", error);
-//     }
-//   };
-
-//   return (
-//     <form className="author-form" onSubmit={handleSubmit}>
-//       <h2>Add Author</h2>
-//       <input
-//         type="text"
-//         name="image"
-//         placeholder="Image URL"
-//         value={formData.image}
-//         onChange={handleChange}
-//         required
-//       />
-//       <input
-//         type="text"
-//         name="author_idCode"
-//         placeholder="Author ID Code"
-//         value={formData.author_idCode}
-//         onChange={handleChange}
-//         required
-//       />
-//       <input
-//         type="text"
-//         name="name"
-//         placeholder="Name"
-//         value={formData.name}
-//         onChange={handleChange}
-//         required
-//       />
-//       <input
-//         type="text"
-//         name="role"
-//         placeholder="Role"
-//         value={formData.role}
-//         onChange={handleChange}
-//         required
-//       />
-//       <input
-//         type="url"
-//         name="linkedIn"
-//         placeholder="LinkedIn URL"
-//         value={formData.linkedIn}
-//         onChange={handleChange}
-//         required
-//       />
-//       <input
-//         type="tel"
-//         name="phoneNumber"
-//         placeholder="Phone Number"
-//         value={formData.phoneNumber}
-//         onChange={handleChange}
-//         required
-//       />
-//       {/* <input
-//         type="email"
-//         name="email"
-//         placeholder="Email"
-//         value={formData.email}
-//         onChange={handleChange}
-//         required
-//       /> */}
-//       <textarea
-//         name="about"
-//         placeholder="About"
-//         value={formData.about}
-//         onChange={handleChange}
-//       />
-//       <textarea
-//         name="awards"
-//         placeholder="Awards"
-//         value={formData.awards}
-//         onChange={handleChange}
-//       />
-//       <textarea
-//         name="experience"
-//         placeholder="Experience"
-//         value={formData.experience}
-//         onChange={handleChange}
-//         required
-//       />
-//     <button type="submit">Submit</button>
-//     </form>
-//   );
+// export const fetchAuthors = async () => {
+//   try {
+//     const response = await api.get("/authors");
+//     return response.data;
+//   } catch (error) {
+//     handleApiError(error, "Failed to fetch authors");
+//   }
 // };
 
-// export default AuthorForm;
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-
-// const AuthorForm = () => {
-//   const [formData, setFormData] = useState({
-//     image: "",
-//     author_idCode: "",
-//     name: "",
-//     role: "",
-//     linkedin: "",
-//     phone: "",
-//     email: "",
-//     testimonial: "",
-//     awards: "",
-//     experience: "",
-//     publications: "",
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // Handle API call here
-//     console.log(formData);
-//   };
-
-//   return (
-//     <div className="max-w-lg mx-auto p-8 bg-white shadow-md rounded-lg">
-//       <h2 className="text-2xl font-bold mb-4 text-center">Add Author</h2>
-//       <form onSubmit={handleSubmit} className="space-y-4">
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Image URL</label>
-//           <input
-//             type="text"
-//             name="image"
-//             value={formData.image}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">
-//             Author ID Code
-//           </label>
-//           <input
-//             type="text"
-//             name="author_idCode"
-//             value={formData.author_idCode}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Name</label>
-//           <input
-//             type="text"
-//             name="name"
-//             value={formData.name}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Role</label>
-//           <input
-//             type="text"
-//             name="role"
-//             value={formData.role}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">LinkedIn URL</label>
-//           <input
-//             type="url"
-//             name="linkedin"
-//             value={formData.linkedin}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Phone</label>
-//           <input
-//             type="text"
-//             name="phone"
-//             value={formData.phone}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Email</label>
-//           <input
-//             type="email"
-//             name="email"
-//             value={formData.email}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Testimonial</label>
-//           <textarea
-//             name="testimonial"
-//             value={formData.testimonial}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           ></textarea>
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Awards</label>
-//           <textarea
-//             name="awards"
-//             value={formData.awards}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           ></textarea>
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">Experience</label>
-//           <textarea
-//             name="experience"
-//             value={formData.experience}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//             required
-//           ></textarea>
-//         </div>
-//         <div>
-//           <label className="block text-gray-700 font-semibold">
-//             Publications
-//           </label>
-//           <textarea
-//             name="publications"
-//             value={formData.publications}
-//             onChange={handleChange}
-//             className="w-full border rounded-md p-2"
-//           ></textarea>
-//         </div>
-//         <button
-//           type="submit"
-//           className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
-//         >
-//           Submit
-//         </button>
-//       </form>
-//     </div>
-//   );
+// export const fetchAuthorById = async (id) => {
+//   try {
+//     const response = await api.get(`/authors/${id}`);
+//     return response.data;
+//   } catch (error) {
+//     handleApiError(error, "Failed to fetch author details");
+//   }
 // };
 
-// export default AuthorForm;
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-// import { createAuthor } from "../../utils/api"; // Import the API call
-// import "./Authorform.css"
-
-// const AuthorForm = () => {
-//   const [formData, setFormData] = useState({
-//     image: "",
-//     author_idCode: "",
-//     name: "",
-//     role: "",
-//     linkedIn: "",
-//     phoneNumber: "",
-//     email: "",
-//     about: "",
-//     awards: "",
-//     experience: "",
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await createAuthor(formData);
-//       alert("Author created successfully!");
-//       setFormData({
-//         image: "",
-//         author_idCode: "",
-//         name: "",
-//         role: "",
-//         linkedIn: "",
-//         phoneNumber: "",
-//         email: "",
-//         about: "",
-//         awards: "",
-//         experience: "",
-//       });
-//     } catch (error) {
-//       alert("Failed to create author. Please try again.");
-//       console.error("Error creating author:", error);
-//     }
-//   };
-
-//   return (
-//     <form className="author-form" onSubmit={handleSubmit}>
-//       <h2>Add Author</h2>
-//       <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange}  />
-//       <input type="text" name="author_idCode" placeholder="Author ID Code" value={formData.author_idCode} onChange={handleChange}  />
-//       <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange}  />
-//       <input type="text" name="role" placeholder="Role" value={formData.role} onChange={handleChange}  />
-//       <input type="url" name="linkedIn" placeholder="LinkedIn URL" value={formData.linkedIn} onChange={handleChange}  />
-//       <input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange}  />
-//       <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange}  />
-//       <textarea name="about" placeholder="About" value={formData.about} onChange={handleChange} />
-//       <textarea name="awards" placeholder="Awards" value={formData.awards} onChange={handleChange} />
-//       <textarea name="experience" placeholder="Experience" value={formData.experience} onChange={handleChange}  />
-//       <button type="submit">Submit</button>
-//     </form>
-//     // <form className="author-form" onSubmit={handleSubmit}>
-//     //   <h2>Add Author</h2>
-//     //   <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} required />
-//     //   <input type="text" name="author_idCode" placeholder="Author ID Code" value={formData.author_idCode} onChange={handleChange} required />
-//     //   <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-//     //   <input type="text" name="role" placeholder="Role" value={formData.role} onChange={handleChange} required />
-//     //   <input type="url" name="linkedIn" placeholder="LinkedIn URL" value={formData.linkedIn} onChange={handleChange} required />
-//     //   <input type="tel" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} required />
-//     //   <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-//     //   <textarea name="about" placeholder="About" value={formData.about} onChange={handleChange} />
-//     //   <textarea name="awards" placeholder="Awards" value={formData.awards} onChange={handleChange} />
-//     //   <textarea name="experience" placeholder="Experience" value={formData.experience} onChange={handleChange} required />
-//     //   <button type="submit">Submit</button>
-//     // </form>
-//   );
+// export const createAuthor = async (authorData) => {
+//   try {
+//     const response = await api.post("/authors", authorData);
+//     toast.success("Author created successfully!");
+//     return response.data;
+//   } catch (error) {
+//     handleApiError(error, "Failed to create author");
+//   }
 // };
 
-// export default AuthorForm;
+// export const updateAuthor = async (id, authorData) => {
+//   try {
+//     const response = await api.put(`/authors/${id}`, authorData);
+//     toast.success("Author updated successfully!");
+//     return response.data;
+//   } catch (error) {
+//     handleApiError(error, "Failed to update author");
+//   }
+// };
+
+// export const deleteAuthor = async (id) => {
+//   try {
+//     const response = await api.delete(`/authors/${id}`);
+//     toast.success("Author deleted successfully!");
+//     return response.data;
+//   } catch (error) {
+//     handleApiError(error, "Failed to delete author");
+//   }
+// };
