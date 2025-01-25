@@ -104,9 +104,7 @@ const createErrorResponse = (res, statusCode, message, error = null) => {
 //   }
 // });
 
-
 // Get all authors
-
 
 export const createAuthor = asyncHandler(async (req, res) => {
   const {
@@ -120,16 +118,21 @@ export const createAuthor = asyncHandler(async (req, res) => {
     awards,
     experience,
     publications,
-  } = req.body; // Access directly from `req.body`
+  } = req.body.data; // Access directly from `req.body`
+  // } = req.body; // Access directly from `req.body`
 
   if (!author_idCode || !name) {
-    return createErrorResponse(res, 400, "Author ID code and name are required.");
+    return createErrorResponse(
+      res,
+      400,
+      "Author ID code and name are required."
+    );
   }
 
   try {
     const author = await prisma.author.create({
+      image,
       data: {
-        image,
         author_idCode,
         name,
         role,
@@ -154,13 +157,6 @@ export const createAuthor = asyncHandler(async (req, res) => {
     return createErrorResponse(res, 500, "Internal server error.", err);
   }
 });
-
-
-
-
-
-
-
 
 export const getAllAuthors = asyncHandler(async (req, res) => {
   try {
@@ -228,7 +224,9 @@ export const updateAuthor = asyncHandler(async (req, res) => {
         publications,
       },
     });
-    res.status(200).json({ message: "Author updated successfully", updatedAuthor });
+    res
+      .status(200)
+      .json({ message: "Author updated successfully", updatedAuthor });
   } catch (err) {
     if (err.code === "P2025") {
       return createErrorResponse(res, 404, "Author not found.", err);
@@ -257,24 +255,6 @@ export const deleteAuthor = asyncHandler(async (req, res) => {
     return createErrorResponse(res, 500, "Internal server error.", err);
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import asyncHandler from "express-async-handler";
 // import { prisma } from "../config/prismaConfig.js";
@@ -412,4 +392,3 @@ export const deleteAuthor = asyncHandler(async (req, res) => {
 //     throw new Error(err.message);
 //   }
 // });
-
