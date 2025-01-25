@@ -11,7 +11,7 @@ import { userRoute } from "./routes/userRoute.js";
 import { residencyRoute } from "./routes/residencyRoute.js";
 // import { apiRoutes } from "./routes/apiRoutes.js";
 import authorRoutes from "./routes/authorRoutes.js";
-import publicationRoutes from "./routes/publicationRoutes.js";
+// import publicationRoutes from "./routes/publicationRoutes.js";
 
 // Prisma connection
 import { prisma } from "./config/prismaConfig.js";
@@ -41,6 +41,7 @@ app.use(cors({ origin: "https://energygrid.onrender.com" }));
 app.use("/api/user", userRoute);
 app.use("/api/residency", residencyRoute);
 app.use("/api/tests", testRoutes);
+app.use("/api/authors", authorRoutes);
 
 
 // Error handling middleware

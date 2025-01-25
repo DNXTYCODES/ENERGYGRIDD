@@ -1,7 +1,7 @@
 import express from "express";
 import {
-  getAuthors,
-  getAuthorById,
+  getAllAuthors,
+  getAuthor,
   createAuthor,
   updateAuthor,
   deleteAuthor,
@@ -10,8 +10,8 @@ import {
 const router = express.Router();
 
 // Routes
-router.get("/", getAuthors);
-router.get("/:id", getAuthorById);
+router.get("/", getAllAuthors);
+router.get("/:id", getAuthor);
 router.post("/", createAuthor);
 router.put("/:id", updateAuthor);
 router.delete("/:id", deleteAuthor);
