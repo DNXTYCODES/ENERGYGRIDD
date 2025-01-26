@@ -11,13 +11,45 @@ datasource db {
 
 
 
+// model Author {
+//   id             String       @id @default(auto()) @map("_id") @db.ObjectId
+//   name           String
+//   role           String
+//   about          String
+//   experience     String
+// }
+
+
+
+
 model Author {
-  id             String       @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  role           String
-  about          String
-  experience     String
+  id           String                  @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  role         String
+  about        String
+  experience   String
+  publications AuthorPublication[]    @relation("AuthorToPublication")
 }
+
+model Publication {
+  id           String                  @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  content      String
+  createdAt    DateTime                @default(now())
+  authors      AuthorPublication[]    @relation("PublicationToAuthor")
+}
+
+model AuthorPublication {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  authorId       String
+  publicationId  String
+  author         Author    @relation("AuthorToPublication", fields: [authorId], references: [id])
+  publication    Publication @relation("PublicationToAuthor", fields: [publicationId], references: [id])
+
+  @@index([authorId])
+  @@index([publicationId])
+}
+
 
 
 
