@@ -21,9 +21,8 @@ datasource db {
 
 
 
-
 model Author {
-  id           String                  @id @default(auto()) @map("_id") @db.ObjectId
+  id           String                  @id @map("_id") @db.ObjectId
   name         String
   role         String
   about        String
@@ -49,6 +48,36 @@ model AuthorPublication {
   @@index([authorId])
   @@index([publicationId])
 }
+
+
+
+// model Author {
+//   id           String                  @id @default(auto()) @map("_id") @db.ObjectId
+//   name         String
+//   role         String
+//   about        String
+//   experience   String
+//   publications AuthorPublication[]    @relation("AuthorToPublication")
+// }
+
+// model Publication {
+//   id           String                  @id @default(auto()) @map("_id") @db.ObjectId
+//   title        String
+//   content      String
+//   createdAt    DateTime                @default(now())
+//   authors      AuthorPublication[]    @relation("PublicationToAuthor")
+// }
+
+// model AuthorPublication {
+//   id             String    @id @default(auto()) @map("_id") @db.ObjectId
+//   authorId       String
+//   publicationId  String
+//   author         Author    @relation("AuthorToPublication", fields: [authorId], references: [id])
+//   publication    Publication @relation("PublicationToAuthor", fields: [publicationId], references: [id])
+
+//   @@index([authorId])
+//   @@index([publicationId])
+// }
 
 
 
