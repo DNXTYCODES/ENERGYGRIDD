@@ -1,4 +1,4 @@
-import prisma from "../config/prismaConfig.js";
+import { prisma } from "../config/prismaConfig.js";
 
 // Create an author with a manually entered unique ID
 export const createAuthor = async (req, res, next) => {
@@ -31,16 +31,6 @@ export const getAuthors = async (req, res, next) => {
     next(err);
   }
 };
-
-
-
-
-
-
-
-
-
-
 
 // import { prisma } from "../config/prismaConfig.js";
 
