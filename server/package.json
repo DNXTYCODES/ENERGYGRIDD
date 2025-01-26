@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --require dotenv/config",
     "postinstall": "prisma generate"
   },
   "dependencies": {

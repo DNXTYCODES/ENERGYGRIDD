@@ -11,7 +11,7 @@ import authorRoutes from "./routes/authorRoutes.js";
 import publicationRoutes from "./routes/publicationRoutes.js";
 
 // Prisma connection
-import prisma from "./config/prismaConfig.js";
+import { prisma } from "../config/prismaConfig.js";
 
 dotenv.config();
 
