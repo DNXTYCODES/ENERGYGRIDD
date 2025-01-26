@@ -21,8 +21,10 @@ datasource db {
 
 
 
+
 model Author {
-  id           String                  @id @map("_id") @db.ObjectId
+  id           String                  @id @default(auto()) @map("_id") @db.ObjectId
+  writerId     String                  @unique
   name         String
   role         String
   about        String
@@ -48,6 +50,14 @@ model AuthorPublication {
   @@index([authorId])
   @@index([publicationId])
 }
+
+
+
+
+
+
+
+
 
 
 

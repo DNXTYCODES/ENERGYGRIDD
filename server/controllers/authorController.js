@@ -1,18 +1,18 @@
 import { prisma } from "../config/prismaConfig.js";
 
-// Create an author with a manually entered unique ID
+// Create an author with a unique writerId
 export const createAuthor = async (req, res, next) => {
   try {
-    const { id, name, role, about, experience } = req.body;
+    const { writerId, name, role, about, experience } = req.body;
 
-    // Validate that the ID is unique
-    const existingAuthor = await prisma.author.findUnique({ where: { id } });
+    // Validate uniqueness of writerId
+    const existingAuthor = await prisma.author.findUnique({ where: { writerId } });
     if (existingAuthor) {
-      return res.status(400).json({ error: "Author ID already exists." });
+      return res.status(400).json({ error: "writerId already exists. Please choose another." });
     }
 
     const author = await prisma.author.create({
-      data: { id, name, role, about, experience },
+      data: { writerId, name, role, about, experience },
     });
     res.status(201).json(author);
   } catch (err) {
@@ -20,7 +20,7 @@ export const createAuthor = async (req, res, next) => {
   }
 };
 
-// Get all authors with their publications
+// Get all authors
 export const getAuthors = async (req, res, next) => {
   try {
     const authors = await prisma.author.findMany({
@@ -31,6 +31,19 @@ export const getAuthors = async (req, res, next) => {
     next(err);
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import { prisma } from "../config/prismaConfig.js";
 
