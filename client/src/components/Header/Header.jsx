@@ -42,11 +42,11 @@ const Header = () => {
             <NavLink to="/expertise">expertise</NavLink>
 
             <NavLink to="/authorform" className="admin-link">
-              upload author
+              personnel upload
             </NavLink>
 
-            <NavLink to="/uploadpublication" className="admin-link">
-              upload publication
+            <NavLink to="/publicationform" className="admin-link">
+              publication upload
             </NavLink>
             <NavLink to="/testform" className="admin-link">
               testform

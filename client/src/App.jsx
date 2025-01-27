@@ -32,6 +32,7 @@ import About from "./pages/About/About";
 import TestForm from "./pages/TestForm/TestForm";
 import TestList from "./pages/TestForm/TestLIst";
 import AuthorForm from "./pages/Authorform/Authorform";
+import PublicationForm from "./pages/PublicationForm/PublicationForm";
 
 function App() {
   const queryClient = new QueryClient();
@@ -76,6 +77,7 @@ function App() {
                 {/* Other Routes */}
 
                 <Route path="/authorform" element={<AuthorForm />} />
+                <Route path="/publicationform" element={<PublicationForm />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/bookings" element={<Bookings />} />
                 <Route path="/favourites" element={<Favourites />} />
