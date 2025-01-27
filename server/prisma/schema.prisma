@@ -25,9 +25,13 @@ datasource db {
 model Author {
   id           String                  @id @default(auto()) @map("_id") @db.ObjectId
   writerId     String                  @unique
+  image        String
   name         String
   role         String
   about        String
+  email        String
+  linkedIn     String
+  phone        String
   experience   String
   publications AuthorPublication[]    @relation("AuthorToPublication")
 }
@@ -36,6 +40,7 @@ model Publication {
   id           String                  @id @default(auto()) @map("_id") @db.ObjectId
   title        String
   content      String
+  category     String
   createdAt    DateTime                @default(now())
   authors      AuthorPublication[]    @relation("PublicationToAuthor")
 }
