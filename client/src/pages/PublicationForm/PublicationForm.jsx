@@ -132,7 +132,7 @@ const PublicationForm = () => {
           style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
         />
         <label>Select Authors:</label>
-        {/* <select
+        <select
           multiple
           value={formData.writerIds}
           onChange={handleMultiSelectChange}
@@ -147,7 +147,7 @@ const PublicationForm = () => {
               {author.name} ({author.writerId})
             </option>
           ))}
-        </select> */}
+        </select>
         <button
           type="submit"
           style={{
@@ -163,7 +163,7 @@ const PublicationForm = () => {
       </form>
 
       <h2>Publication List</h2>
-      {/* <ul>
+      <ul>
         {publications.map((publication) => (
           <li key={publication.id} style={{ margin: "10px 0" }}>
             {publication.title} ({publication.category})
@@ -178,7 +178,7 @@ const PublicationForm = () => {
             </button>
           </li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 };
@@ -380,12 +380,6 @@ export default PublicationForm;
 // };
 
 // export default PublicationForm;
-
-
-
-
-
-
 
 
 
