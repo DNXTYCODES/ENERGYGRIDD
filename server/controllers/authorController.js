@@ -50,18 +50,39 @@ export const updateAuthor = async (req, res, next) => {
   }
 };
 
-// Delete an author
 export const deleteAuthor = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    // Delete author
-    await prisma.author.delete({ where: { id } });
-    res.status(204).send();
+    // Delete all related records in AuthorPublication
+    await prisma.authorPublication.deleteMany({
+      where: { authorId: id },
+    });
+
+    // Delete the author
+    await prisma.author.delete({
+      where: { id },
+    });
+
+    res.status(204).send(); // No content
   } catch (err) {
     next(err);
   }
 };
+
+
+// // Delete an author
+// export const deleteAuthor = async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+
+//     // Delete author
+//     await prisma.author.delete({ where: { id } });
+//     res.status(204).send();
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 
 
