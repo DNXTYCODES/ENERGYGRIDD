@@ -101,65 +101,13 @@ export const deleteAuthor = async (id) => {
 
 
 
-// Create a new publication
-export const createPublication = async (publicationData) => {
-  try {
-    const response = await axios.post(`${baseURL}/publications`, publicationData);
-    return response.data.data; // Extract the wrapped data
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
-};
-
-// Get all publications
-export const getPublications = async () => {
-  try {
-    const response = await axios.get(`${baseURL}/publications`);
-    return response.data.data; // Extract the wrapped data
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
-};
-
-// Update a publication
-export const updatePublication = async (id, updatedData) => {
-  try {
-    const response = await axios.put(`${baseURL}/publications/${id}`, updatedData);
-    return response.data.data; // Extract the wrapped data
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
-};
-
-// Delete a publication
-export const deletePublication = async (id) => {
-  try {
-    await axios.delete(`${baseURL}/publications/${id}`);
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-// // ===== Publications =====
-
 // // Create a new publication
 // export const createPublication = async (publicationData) => {
 //   try {
 //     const response = await axios.post(`${baseURL}/publications`, publicationData);
-//     return response.data.data;
+//     return response.data.data; // Extract the wrapped data
 //   } catch (error) {
-//     throw error.response.data;
+//     throw error.response?.data || error.message;
 //   }
 // };
 
@@ -167,9 +115,9 @@ export const deletePublication = async (id) => {
 // export const getPublications = async () => {
 //   try {
 //     const response = await axios.get(`${baseURL}/publications`);
-//     return response.data;
+//     return response.data.data; // Extract the wrapped data
 //   } catch (error) {
-//     throw error.response.data;
+//     throw error.response?.data || error.message;
 //   }
 // };
 
@@ -177,9 +125,9 @@ export const deletePublication = async (id) => {
 // export const updatePublication = async (id, updatedData) => {
 //   try {
 //     const response = await axios.put(`${baseURL}/publications/${id}`, updatedData);
-//     return response.data;
+//     return response.data.data; // Extract the wrapped data
 //   } catch (error) {
-//     throw error.response.data;
+//     throw error.response?.data || error.message;
 //   }
 // };
 
@@ -188,9 +136,61 @@ export const deletePublication = async (id) => {
 //   try {
 //     await axios.delete(`${baseURL}/publications/${id}`);
 //   } catch (error) {
-//     throw error.response.data;
+//     throw error.response?.data || error.message;
 //   }
 // };
+
+
+
+
+
+
+
+
+
+
+
+
+// ===== Publications =====
+
+// Create a new publication
+export const createPublication = async (publicationData) => {
+  try {
+    const response = await axios.post(`${baseURL}/publications`, publicationData);
+    return response.data.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+// Get all publications
+export const getPublications = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/publications`);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+// Update a publication
+export const updatePublication = async (id, updatedData) => {
+  try {
+    const response = await axios.put(`${baseURL}/publications/${id}`, updatedData);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+// Delete a publication
+export const deletePublication = async (id) => {
+  try {
+    await axios.delete(`${baseURL}/publications/${id}`);
+  } catch (error) {
+    throw error.response.data;
+  }
+};
 
 
 
