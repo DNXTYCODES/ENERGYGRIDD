@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post("/", createPublication);
 router.get("/", getPublications);
-router.get("/:id", updatePublication);
-router.get("/:id", deletePublication);
+router.put("/:id", updatePublication);
+router.delete("/:id", deletePublication);
 
 export default router;
