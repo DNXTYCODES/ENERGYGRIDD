@@ -21,14 +21,18 @@ const AuthorForm = () => {
     experience: "",
   });
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
-  // Fetch all authors
   const fetchAuthors = async () => {
     try {
+      setLoading(true);
       const data = await getAuthors();
       setAuthors(data);
     } catch (error) {
       console.error("Error fetching authors:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,20 +40,21 @@ const AuthorForm = () => {
     fetchAuthors();
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission for add/edit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       if (isEditing) {
         await updateAuthor(formData.id, formData);
+        setMessage("Author updated successfully!");
       } else {
         await createAuthor(formData);
+        setMessage("Author added successfully!");
       }
       setFormData({
         id: "",
@@ -66,49 +71,326 @@ const AuthorForm = () => {
       setIsEditing(false);
       fetchAuthors();
     } catch (error) {
-      console.error("Error submitting form:", error);
+      setMessage("Error submitting the form.");
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Handle edit action
   const handleEdit = (author) => {
     setFormData(author);
     setIsEditing(true);
   };
 
-  // Handle delete action
   const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this author?")) return;
+    setLoading(true);
     try {
       await deleteAuthor(id);
+      setMessage("Author deleted successfully!");
       fetchAuthors();
     } catch (error) {
-      console.error("Error deleting author:", error);
+      setMessage("Error deleting the author.");
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ backgroundColor: "gray" }}>
-      <h1>{isEditing ? "Edit Author" : "Add Author"}</h1>
-      <form onSubmit={handleSubmit}>
-        {/* Form fields */}
-        {/* Same form fields as in your original code */}
+    <div style={{ backgroundColor: "#f7f7f7", padding: "20px", borderRadius: "10px" }}>
+      <h1 style={{ color: "#333" }}>{isEditing ? "Edit Author" : "Add Author"}</h1>
+      <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+        <input
+          type="text"
+          name="writerId"
+          placeholder="Writer ID"
+          value={formData.writerId}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="role"
+          placeholder="Role"
+          value={formData.role}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="about"
+          placeholder="About"
+          value={formData.about}
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="url"
+          name="linkedIn"
+          placeholder="LinkedIn Profile"
+          value={formData.linkedIn}
+          onChange={handleChange}
+        />
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone"
+          value={formData.phone}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="experience"
+          placeholder="Experience"
+          value={formData.experience}
+          onChange={handleChange}
+        />
+        <input
+          type="url"
+          name="image"
+          placeholder="Image URL"
+          value={formData.image}
+          onChange={handleChange}
+        />
+        <button type="submit" disabled={loading}>
+          {isEditing ? "Update Author" : "Add Author"}
+        </button>
       </form>
 
+      {message && <p>{message}</p>}
+
       <h2>Author List</h2>
-      <ul>
-        {authors.map((author) => (
-          <li key={author.id}>
-            {author.name} ({author.writerId})
-            <button onClick={() => handleEdit(author)}>Edit</button>
-            <button onClick={() => handleDelete(author.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <ul>
+          {authors.map((author) => (
+            <li key={author.id}>
+              {author.name} ({author.writerId})
+              <button onClick={() => handleEdit(author)}>Edit</button>
+              <button onClick={() => handleDelete(author.id)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
 
 export default AuthorForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import {
+//   createAuthor,
+//   getAuthors,
+//   updateAuthor,
+//   deleteAuthor,
+// } from "../../utils/api";
+
+// const AuthorForm = () => {
+//   const [authors, setAuthors] = useState([]);
+//   const [formData, setFormData] = useState({
+//     id: "",
+//     writerId: "",
+//     image: "",
+//     name: "",
+//     role: "",
+//     about: "",
+//     email: "",
+//     linkedIn: "",
+//     phone: "",
+//     experience: "",
+//   });
+//   const [isEditing, setIsEditing] = useState(false);
+
+//   // Fetch all authors
+//   const fetchAuthors = async () => {
+//     try {
+//       const data = await getAuthors();
+//       setAuthors(data);
+//     } catch (error) {
+//       console.error("Error fetching authors:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchAuthors();
+//   }, []);
+
+//   // Handle form input changes
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({ ...formData, [name]: value });
+//   };
+
+//   // Handle form submission for add/edit
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       if (isEditing) {
+//         await updateAuthor(formData.id, formData);
+//       } else {
+//         await createAuthor(formData);
+//       }
+//       setFormData({
+//         id: "",
+//         writerId: "",
+//         image: "",
+//         name: "",
+//         role: "",
+//         about: "",
+//         email: "",
+//         linkedIn: "",
+//         phone: "",
+//         experience: "",
+//       });
+//       setIsEditing(false);
+//       fetchAuthors();
+//     } catch (error) {
+//       console.error("Error submitting form:", error);
+//     }
+//   };
+
+//   // Handle edit action
+//   const handleEdit = (author) => {
+//     setFormData(author);
+//     setIsEditing(true);
+//   };
+
+//   // Handle delete action
+//   const handleDelete = async (id) => {
+//     try {
+//       await deleteAuthor(id);
+//       fetchAuthors();
+//     } catch (error) {
+//       console.error("Error deleting author:", error);
+//     }
+//   };
+
+//   return (
+//     <div style={{ backgroundColor: "gray" }}>
+//       <h1>{isEditing ? "Edit Author" : "Add Author"}</h1>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type="text"
+//           name="writerId"
+//           placeholder="Writer ID"
+//           value={formData.writerId}
+//           onChange={handleChange}
+//           required
+//         />
+//         <input
+//           type="text"
+//           name="name"
+//           placeholder="Name"
+//           value={formData.name}
+//           onChange={handleChange}
+//           required
+//         />
+//         <input
+//           type="text"
+//           name="role"
+//           placeholder="Role"
+//           value={formData.role}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="text"
+//           name="about"
+//           placeholder="About"
+//           value={formData.about}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="email"
+//           name="email"
+//           placeholder="Email"
+//           value={formData.email}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="url"
+//           name="linkedIn"
+//           placeholder="LinkedIn Profile"
+//           value={formData.linkedIn}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="tel"
+//           name="phone"
+//           placeholder="Phone"
+//           value={formData.phone}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="text"
+//           name="experience"
+//           placeholder="Experience"
+//           value={formData.experience}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="url"
+//           name="image"
+//           placeholder="Image URL"
+//           value={formData.image}
+//           onChange={handleChange}
+//         />
+//         <button type="submit">{isEditing ? "Update Author" : "Add Author"}</button>
+//       </form>
+
+
+//       <h2>Author List</h2>
+//       <ul>
+//         {authors.map((author) => (
+//           <li key={author.id}>
+//             {author.name} ({author.writerId})
+//             <button onClick={() => handleEdit(author)}>Edit</button>
+//             <button onClick={() => handleDelete(author.id)}>Delete</button>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default AuthorForm;
 
 
 
