@@ -26,7 +26,8 @@ export const getAuthors = async (req, res, next) => {
     const authors = await prisma.author.findMany({
       include: { publications: { include: { publication: true } } },
     });
-    res.status(200).json(authors);
+    // res.status(200).json(authors);
+    res.status(200).json({ data: authors }); // Wrap in a `data` property
   } catch (err) {
     next(err);
   }
@@ -69,6 +70,9 @@ export const deleteAuthor = async (req, res, next) => {
     next(err);
   }
 };
+
+
+
 
 
 // // Delete an author
