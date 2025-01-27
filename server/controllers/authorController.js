@@ -14,7 +14,7 @@ export const createAuthor = async (req, res, next) => {
     const author = await prisma.author.create({
       data: { writerId, image, name, role, about, email, linkedIn, phone, experience },
     });
-    res.status(201).json(author);
+    res.status(201).json({ data: author });
   } catch (err) {
     next(err);
   }
@@ -45,7 +45,7 @@ export const updateAuthor = async (req, res, next) => {
       data: { writerId, image, name, role, about, email, linkedIn, phone, experience },
     });
 
-    res.status(200).json(updatedAuthor);
+    res.status(200).json({ data: updatedAuthor });
   } catch (err) {
     next(err);
   }

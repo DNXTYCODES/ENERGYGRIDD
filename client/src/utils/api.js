@@ -38,7 +38,7 @@ const handleApiError = (error, customMessage) => {
 export const createAuthor = async (authorData) => {
   try {
     const response = await axios.post(`${baseURL}/authors`, authorData);
-    return response.data;
+    return response.data.data;
   } catch (error) {
     throw error.response.data;
   }
@@ -70,7 +70,7 @@ export const getAuthors = async () => {
 export const updateAuthor = async (id, updatedData) => {
   try {
     const response = await axios.put(`${baseURL}/authors/${id}`, updatedData);
-    return response.data;
+    return response.data.data;
   } catch (error) {
     throw error.response.data;
   }
@@ -79,7 +79,8 @@ export const updateAuthor = async (id, updatedData) => {
 // Delete an author
 export const deleteAuthor = async (id) => {
   try {
-    await axios.delete(`${baseURL}/authors/${id}`);
+    // await axios.delete(`${baseURL}/authors/${id}`);
+    await axios.delete(`https://energygridd.onrender.com/api/authors/${id}`);
   } catch (error) {
     throw error.response.data;
   }
@@ -91,7 +92,7 @@ export const deleteAuthor = async (id) => {
 export const createPublication = async (publicationData) => {
   try {
     const response = await axios.post(`${baseURL}/publications`, publicationData);
-    return response.data;
+    return response.data.data;
   } catch (error) {
     throw error.response.data;
   }
