@@ -56,7 +56,8 @@ export const createAuthor = async (authorData) => {
 
 export const getAuthors = async () => {
   try {
-    const response = await axios.get(`${baseURL}/authors`);
+    // const response = await axios.get(`${baseURL}/authors`);
+    const response = await axios.get(`https://energygridd.onrender.com/api/authors`);
     return response.data.data; // Access the `data` property
   } catch (error) {
     console.error("Error in getAuthors:", error);
