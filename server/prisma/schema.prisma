@@ -38,6 +38,7 @@ model Author {
 
 model Publication {
   id           String                  @id @default(auto()) @map("_id") @db.ObjectId
+  image        String
   title        String
   content      String
   category     String

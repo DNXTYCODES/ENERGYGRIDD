@@ -3,7 +3,7 @@ import { prisma } from "../config/prismaConfig.js";
 // Create a publication with associated authors
 export const createPublication = async (req, res, next) => {
   try {
-    const { title, content, category, writerIds } = req.body;
+    const { image, title, content, category, writerIds } = req.body;
 
     // Validate that all provided writerIds exist
     const authors = await prisma.author.findMany({ where: { writerId: { in: writerIds } } });
@@ -18,6 +18,7 @@ export const createPublication = async (req, res, next) => {
 
     const publication = await prisma.publication.create({
       data: {
+        image,
         title,
         content,
         category,
