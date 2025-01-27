@@ -37,8 +37,9 @@ const handleApiError = (error, customMessage) => {
 // Create a new author
 export const createAuthor = async (authorData) => {
   try {
-    const response = await axios.post(`${baseURL}/authors`, authorData);
-    return response.data.data;
+    const response = await axios.post(`https://energygridd.onrender.com/api/authors`, authorData);
+    // return response.data.data;
+    return response.data;
   } catch (error) {
     throw error.response.data;
   }
