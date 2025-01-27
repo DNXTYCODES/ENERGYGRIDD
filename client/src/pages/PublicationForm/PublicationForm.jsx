@@ -4,8 +4,8 @@ import {
   getPublications,
   updatePublication,
   deletePublication,
-  getAuthors,
 } from "../../utils/api";
+import { getAuthors } from "../../utils/api";
 
 const PublicationForm = () => {
   const [publications, setPublications] = useState([]);
@@ -19,18 +19,13 @@ const PublicationForm = () => {
     writerIds: [],
   });
   const [isEditing, setIsEditing] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   const fetchPublications = async () => {
     try {
-      setLoading(true);
       const data = await getPublications();
       setPublications(data);
     } catch (error) {
       console.error("Error fetching publications:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -64,14 +59,11 @@ const PublicationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
       if (isEditing) {
         await updatePublication(formData.id, formData);
-        setMessage("Publication updated successfully!");
       } else {
         await createPublication(formData);
-        setMessage("Publication added successfully!");
       }
       setFormData({
         id: "",
@@ -84,10 +76,7 @@ const PublicationForm = () => {
       setIsEditing(false);
       fetchPublications();
     } catch (error) {
-      setMessage("Error submitting the form.");
-      console.error(error);
-    } finally {
-      setLoading(false);
+      console.error("Error submitting form:", error);
     }
   };
 
@@ -97,24 +86,18 @@ const PublicationForm = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this publication?")) return;
-    setLoading(true);
     try {
       await deletePublication(id);
-      setMessage("Publication deleted successfully!");
       fetchPublications();
     } catch (error) {
-      setMessage("Error deleting the publication.");
-      console.error(error);
-    } finally {
-      setLoading(false);
+      console.error("Error deleting publication:", error);
     }
   };
 
   return (
-    <div style={{ backgroundColor: "#f7f7f7", padding: "20px", borderRadius: "10px" }}>
-      <h1 style={{ color: "#333" }}>{isEditing ? "Edit Publication" : "Add Publication"}</h1>
-      <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+    <div style={{ backgroundColor: "#f4f4f4", padding: "20px", borderRadius: "8px" }}>
+      <h1>{isEditing ? "Edit Publication" : "Add Publication"}</h1>
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         <input
           type="text"
           name="title"
@@ -122,6 +105,7 @@ const PublicationForm = () => {
           value={formData.title}
           onChange={handleChange}
           required
+          style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
         />
         <textarea
           name="content"
@@ -129,6 +113,7 @@ const PublicationForm = () => {
           value={formData.content}
           onChange={handleChange}
           required
+          style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
         />
         <input
           type="text"
@@ -136,6 +121,7 @@ const PublicationForm = () => {
           placeholder="Category"
           value={formData.category}
           onChange={handleChange}
+          style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
         />
         <input
           type="url"
@@ -143,41 +129,257 @@ const PublicationForm = () => {
           placeholder="Image URL"
           value={formData.image}
           onChange={handleChange}
+          style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
         />
         <label>Select Authors:</label>
-        <select multiple value={formData.writerIds} onChange={handleMultiSelectChange}>
+        <select
+          multiple
+          value={formData.writerIds}
+          onChange={handleMultiSelectChange}
+          style={{
+            padding: "8px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+          }}
+        >
           {authors.map((author) => (
             <option key={author.writerId} value={author.writerId}>
               {author.name} ({author.writerId})
             </option>
           ))}
         </select>
-        <button type="submit" disabled={loading}>
+        <button
+          type="submit"
+          style={{
+            padding: "10px",
+            borderRadius: "4px",
+            backgroundColor: "#007BFF",
+            color: "#fff",
+            border: "none",
+          }}
+        >
           {isEditing ? "Update Publication" : "Add Publication"}
         </button>
       </form>
 
-      {message && <p>{message}</p>}
-
       <h2>Publication List</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul>
-          {publications.map((publication) => (
-            <li key={publication.id}>
-              {publication.title} ({publication.category})
-              <button onClick={() => handleEdit(publication)}>Edit</button>
-              <button onClick={() => handleDelete(publication.id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {publications.map((publication) => (
+          <li key={publication.id} style={{ margin: "10px 0" }}>
+            {publication.title} ({publication.category})
+            <button onClick={() => handleEdit(publication)} style={{ marginLeft: "10px" }}>
+              Edit
+            </button>
+            <button
+              onClick={() => handleDelete(publication.id)}
+              style={{ marginLeft: "10px", color: "red" }}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
 export default PublicationForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import {
+//   createPublication,
+//   getPublications,
+//   updatePublication,
+//   deletePublication,
+//   getAuthors,
+// } from "../../utils/api";
+
+// const PublicationForm = () => {
+//   const [publications, setPublications] = useState([]);
+//   const [authors, setAuthors] = useState([]);
+//   const [formData, setFormData] = useState({
+//     id: "",
+//     title: "",
+//     content: "",
+//     category: "",
+//     image: "",
+//     writerIds: [],
+//   });
+//   const [isEditing, setIsEditing] = useState(false);
+//   const [loading, setLoading] = useState(false);
+//   const [message, setMessage] = useState("");
+
+//   const fetchPublications = async () => {
+//     try {
+//       setLoading(true);
+//       const data = await getPublications();
+//       setPublications(data);
+//     } catch (error) {
+//       console.error("Error fetching publications:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const fetchAuthors = async () => {
+//     try {
+//       const data = await getAuthors();
+//       setAuthors(data);
+//     } catch (error) {
+//       console.error("Error fetching authors:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchPublications();
+//     fetchAuthors();
+//   }, []);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({ ...formData, [name]: value });
+//   };
+
+//   const handleMultiSelectChange = (e) => {
+//     const options = e.target.options;
+//     const selected = [];
+//     for (let i = 0; i < options.length; i++) {
+//       if (options[i].selected) selected.push(options[i].value);
+//     }
+//     setFormData({ ...formData, writerIds: selected });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setLoading(true);
+//     try {
+//       if (isEditing) {
+//         await updatePublication(formData.id, formData);
+//         setMessage("Publication updated successfully!");
+//       } else {
+//         await createPublication(formData);
+//         setMessage("Publication added successfully!");
+//       }
+//       setFormData({
+//         id: "",
+//         title: "",
+//         content: "",
+//         category: "",
+//         image: "",
+//         writerIds: [],
+//       });
+//       setIsEditing(false);
+//       fetchPublications();
+//     } catch (error) {
+//       setMessage("Error submitting the form.");
+//       console.error(error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleEdit = (publication) => {
+//     setFormData(publication);
+//     setIsEditing(true);
+//   };
+
+//   const handleDelete = async (id) => {
+//     if (!window.confirm("Are you sure you want to delete this publication?")) return;
+//     setLoading(true);
+//     try {
+//       await deletePublication(id);
+//       setMessage("Publication deleted successfully!");
+//       fetchPublications();
+//     } catch (error) {
+//       setMessage("Error deleting the publication.");
+//       console.error(error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div style={{ backgroundColor: "#f7f7f7", padding: "20px", borderRadius: "10px" }}>
+//       <h1 style={{ color: "#333" }}>{isEditing ? "Edit Publication" : "Add Publication"}</h1>
+//       <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+//         <input
+//           type="text"
+//           name="title"
+//           placeholder="Title"
+//           value={formData.title}
+//           onChange={handleChange}
+//           required
+//         />
+//         <textarea
+//           name="content"
+//           placeholder="Content"
+//           value={formData.content}
+//           onChange={handleChange}
+//           required
+//         />
+//         <input
+//           type="text"
+//           name="category"
+//           placeholder="Category"
+//           value={formData.category}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="url"
+//           name="image"
+//           placeholder="Image URL"
+//           value={formData.image}
+//           onChange={handleChange}
+//         />
+//         <label>Select Authors:</label>
+//         <select multiple value={formData.writerIds} onChange={handleMultiSelectChange}>
+//           {authors.map((author) => (
+//             <option key={author.writerId} value={author.writerId}>
+//               {author.name} ({author.writerId})
+//             </option>
+//           ))}
+//         </select>
+//         <button type="submit" disabled={loading}>
+//           {isEditing ? "Update Publication" : "Add Publication"}
+//         </button>
+//       </form>
+
+//       {message && <p>{message}</p>}
+
+//       <h2>Publication List</h2>
+//       {loading ? (
+//         <p>Loading...</p>
+//       ) : (
+//         <ul>
+//           {publications.map((publication) => (
+//             <li key={publication.id}>
+//               {publication.title} ({publication.category})
+//               <button onClick={() => handleEdit(publication)}>Edit</button>
+//               <button onClick={() => handleDelete(publication.id)}>Delete</button>
+//             </li>
+//           ))}
+//         </ul>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default PublicationForm;
 
 
 
