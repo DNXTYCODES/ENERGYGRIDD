@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import {
+  createAuthor,
+  getAuthors,
+  updateAuthor,
+  deleteAuthor,
+} from "../../utils/api";
 
 const AuthorForm = () => {
   const [authors, setAuthors] = useState([]);
@@ -20,8 +25,8 @@ const AuthorForm = () => {
   // Fetch all authors
   const fetchAuthors = async () => {
     try {
-      const response = await axios.get("/api/authors");
-      setAuthors(response.data);
+      const data = await getAuthors();
+      setAuthors(data);
     } catch (error) {
       console.error("Error fetching authors:", error);
     }
@@ -42,11 +47,9 @@ const AuthorForm = () => {
     e.preventDefault();
     try {
       if (isEditing) {
-        // Update author
-        await axios.put(`/api/authors/${formData.id}`, formData);
+        await updateAuthor(formData.id, formData);
       } else {
-        // Add new author
-        await axios.post("/api/authors", formData);
+        await createAuthor(formData);
       }
       setFormData({
         id: "",
@@ -76,7 +79,7 @@ const AuthorForm = () => {
   // Handle delete action
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/authors/${id}`);
+      await deleteAuthor(id);
       fetchAuthors();
     } catch (error) {
       console.error("Error deleting author:", error);
@@ -84,75 +87,11 @@ const AuthorForm = () => {
   };
 
   return (
-    <div style={{backgroundColor: "gray"}}>
+    <div style={{ backgroundColor: "gray" }}>
       <h1>{isEditing ? "Edit Author" : "Add Author"}</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="writerId"
-          placeholder="Writer ID"
-          value={formData.writerId}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="role"
-          placeholder="Role"
-          value={formData.role}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="about"
-          placeholder="About"
-          value={formData.about}
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <input
-          type="url"
-          name="linkedIn"
-          placeholder="LinkedIn Profile"
-          value={formData.linkedIn}
-          onChange={handleChange}
-        />
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="experience"
-          placeholder="Experience"
-          value={formData.experience}
-          onChange={handleChange}
-        />
-        <input
-          type="url"
-          name="image"
-          placeholder="Image URL"
-          value={formData.image}
-          onChange={handleChange}
-        />
-        <button type="submit">{isEditing ? "Update Author" : "Add Author"}</button>
+        {/* Form fields */}
+        {/* Same form fields as in your original code */}
       </form>
 
       <h2>Author List</h2>
@@ -170,6 +109,193 @@ const AuthorForm = () => {
 };
 
 export default AuthorForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+
+// const AuthorForm = () => {
+//   const [authors, setAuthors] = useState([]);
+//   const [formData, setFormData] = useState({
+//     id: "",
+//     writerId: "",
+//     image: "",
+//     name: "",
+//     role: "",
+//     about: "",
+//     email: "",
+//     linkedIn: "",
+//     phone: "",
+//     experience: "",
+//   });
+//   const [isEditing, setIsEditing] = useState(false);
+
+//   // Fetch all authors
+//   const fetchAuthors = async () => {
+//     try {
+//       const response = await axios.get("/api/authors");
+//       setAuthors(response.data);
+//     } catch (error) {
+//       console.error("Error fetching authors:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchAuthors();
+//   }, []);
+
+//   // Handle form input changes
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({ ...formData, [name]: value });
+//   };
+
+//   // Handle form submission for add/edit
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       if (isEditing) {
+//         // Update author
+//         await axios.put(`/api/authors/${formData.id}`, formData);
+//       } else {
+//         // Add new author
+//         await axios.post("/api/authors", formData);
+//       }
+//       setFormData({
+//         id: "",
+//         writerId: "",
+//         image: "",
+//         name: "",
+//         role: "",
+//         about: "",
+//         email: "",
+//         linkedIn: "",
+//         phone: "",
+//         experience: "",
+//       });
+//       setIsEditing(false);
+//       fetchAuthors();
+//     } catch (error) {
+//       console.error("Error submitting form:", error);
+//     }
+//   };
+
+//   // Handle edit action
+//   const handleEdit = (author) => {
+//     setFormData(author);
+//     setIsEditing(true);
+//   };
+
+//   // Handle delete action
+//   const handleDelete = async (id) => {
+//     try {
+//       await axios.delete(`/api/authors/${id}`);
+//       fetchAuthors();
+//     } catch (error) {
+//       console.error("Error deleting author:", error);
+//     }
+//   };
+
+//   return (
+//     <div style={{backgroundColor: "gray"}}>
+//       <h1>{isEditing ? "Edit Author" : "Add Author"}</h1>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type="text"
+//           name="writerId"
+//           placeholder="Writer ID"
+//           value={formData.writerId}
+//           onChange={handleChange}
+//           required
+//         />
+//         <input
+//           type="text"
+//           name="name"
+//           placeholder="Name"
+//           value={formData.name}
+//           onChange={handleChange}
+//           required
+//         />
+//         <input
+//           type="text"
+//           name="role"
+//           placeholder="Role"
+//           value={formData.role}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="text"
+//           name="about"
+//           placeholder="About"
+//           value={formData.about}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="email"
+//           name="email"
+//           placeholder="Email"
+//           value={formData.email}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="url"
+//           name="linkedIn"
+//           placeholder="LinkedIn Profile"
+//           value={formData.linkedIn}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="tel"
+//           name="phone"
+//           placeholder="Phone"
+//           value={formData.phone}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="text"
+//           name="experience"
+//           placeholder="Experience"
+//           value={formData.experience}
+//           onChange={handleChange}
+//         />
+//         <input
+//           type="url"
+//           name="image"
+//           placeholder="Image URL"
+//           value={formData.image}
+//           onChange={handleChange}
+//         />
+//         <button type="submit">{isEditing ? "Update Author" : "Add Author"}</button>
+//       </form>
+
+//       <h2>Author List</h2>
+//       <ul>
+//         {authors.map((author) => (
+//           <li key={author.id}>
+//             {author.name} ({author.writerId})
+//             <button onClick={() => handleEdit(author)}>Edit</button>
+//             <button onClick={() => handleDelete(author.id)}>Delete</button>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default AuthorForm;
 
 
 
